@@ -304,7 +304,7 @@ li {
   margin-right: 10px;
 }
 
-.delete-icon {
+.delete-icon > a > img{
   width: 35px;
   height: auto;
 }
@@ -340,7 +340,7 @@ li {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: 0.4s;
+  transition: 0.2s;
   border-radius: 34px;
 }
 
@@ -352,7 +352,7 @@ li {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: 0.4s;
+  transition: 0.2s;
   border-radius: 50%;
 }
 
@@ -370,4 +370,79 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+/* MCQs */
+
+.mcq-option-property {
+  all: unset;
+  padding: 0 5px;
+  font-weight: 420;
+  color: #424447;
+  flex: 1;
+}
+
+.mcq-option-property:hover {
+  border-bottom: 1px solid #c3c6c9;
+}
+
+.mcq-add-option-property {
+  padding: 0 5px;
+  font-weight: 420;
+  color: #757575;
+  flex: 1;
+}
+
+.mcq-add-option-property:hover {
+  border-bottom: 1px solid #c3c6c9;
+}
+
+.mcq-option-property:focus {
+  transition: 0.1s;
+  border-bottom: 2px solid #5a6066;
+}
+
+.mcq-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 67%;
+}
+
+.option-icon,
+.delete-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox-icon {
+  opacity: 0.7;
+}
+
+.checkbox-icon > img {
+  width: 30px;
+  height: auto;
+}
+
+.option-icon > img {
+  width: 22px;
+  height: auto;
+  padding: 5px;
+}
+
+.checkbox-icon > img {
+  width: 20px;
+}
+
+.delete-icon > img {
+  width: 22px;
+  height: auto;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.delete-icon > img:hover {
+  cursor: pointer;
+  background-color: #f9f7fe;
 }
