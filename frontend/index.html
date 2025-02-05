@@ -1,12 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Survey Master</title>
-</head>
-<body>
-    <main class="main" id="main"></main>
-</body>
-<script src="./js/script.js" type="module"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header" id="header"></header>
+      <main class="main" id="main">
+        <div class="survey-container">
+          <div class="header-container white-bg border">
+            <div class="title-container poppins-bold">
+              <input
+                type="text"
+                class="survey-title text-box"
+                placeholder="Title"
+                id="survey-title"
+              />
+            </div>
+            <div class="description-container poppins-normal">
+              <textarea
+                class="survey-description text-box"
+                placeholder="Describe your survey"
+                id="description-input"
+              ></textarea>
+            </div>
+          </div>
+
+          <div
+            class="question-main-container white-bg border"
+            id="question-main-container"
+          >
+            <div class="question-container">
+              <div class="question poppins-normal">
+                <textarea
+                  type="text"
+                  class="question-text"
+                  placeholder="Question"
+                  id="question-input"
+                ></textarea>
+              </div>
+              <div class="answer-type-container poppins-normal">
+                <label for="answer-type" class="visually-hidden"
+                  >Answer Type</label
+                >
+                <select class="answer-type" id="answer-type">
+                  <option value="text" selected>Short Answer</option>
+                  <option value="paragraph">Paragraph</option>
+                  <option value="number">Number</option>
+                  <option value="radio">MCQs</option>
+                  <option value="checkbox">Checkbox</option>
+                  <option value="file">File upload</option>
+                </select>
+              </div>
+            </div>
+            <div class="answer-container" id="answer-container">
+              <!-- dynamic module will be loaded based on type of response -->
+              <!-- short answer -->
+              <div class="short-answer poppins-text">
+                <p>Short-Answer text</p>
+              </div>
+              <div class="short-answer-validation">
+                <div class="min-length-container">
+                  <label for="min-length" class="min-length-label poppins-text"
+                    >Min:
+                  </label>
+                  <input
+                    type="number"
+                    id="min-length"
+                    class="validation-box"
+                    placeholder="Min Length"
+                  />
+                </div>
+                <div class="max-length-container">
+                  <label for="max-length" class="max-length-label poppins-text"
+                    >Max:
+                  </label>
+                  <input
+                    type="number"
+                    id="max-length"
+                    class="validation-box"
+                    placeholder="Max Length"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="question-footer">
+              <div class="add-question" id="add-question">
+                <a href="#"
+                  ><img src="./images/add-button.png" alt="add question"
+                /></a>
+              </div>
+              <div class="delete-icon" id="delete-icon">
+                <a href="#"><img src="./images/delete.svg" alt="delete" /></a>
+              </div>
+              <div class="required-container">
+                <label
+                  for="required-toggle"
+                  class="required-toggle-label poppins-text"
+                  >Required</label
+                >
+                <label class="switch">
+                  <input type="checkbox" id="required-toggle" />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="footer" id="footer"></footer>
+    </div>
+  </body>
+  <!-- <script src="./js/basic-init.js" type="module"></script> -->
+  <script src="./js/script.js" type="module"></script>
 </html>
