@@ -11,13 +11,6 @@
 body {
   background-color: #f9f7fe;
 }
-/* input {
-  all: unset;
-}
-
-textarea {
-  all: unset;
-} */
 
 .visually-hidden {
   display: none;
