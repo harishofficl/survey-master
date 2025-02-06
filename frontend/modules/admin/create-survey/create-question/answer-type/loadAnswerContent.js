@@ -1,4 +1,4 @@
-import htmlBuilder from "../../../../utils/htmlBuilder.js";
+import htmlBuilder from "../../../../../utils/htmlBuilder.js";
 
 import { shortAnswerDom, longAnswerDom, numberDom, multipleChoiceDom, checkboxDom, fileDom } from "./json-data.js";
 
