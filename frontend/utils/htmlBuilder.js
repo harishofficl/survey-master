@@ -45,6 +45,7 @@ export default function htmlBuilder(elements, parent) {
 }
 
 /*
+
 const elements = [
   {
     tag: "h2",

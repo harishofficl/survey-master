@@ -226,7 +226,7 @@ li {
 }
 
 .answer-type-container {
-  flex: 0 0 1;
+  flex: 0.4;
 }
 
 .answer-container {
@@ -288,7 +288,11 @@ li {
 }
 
 .min-length-label {
-  margin-right: 4px;
+  margin-right: 10px;
+}
+
+.max-length-label {
+  margin-right: 7px;
 }
 
 /* footer */
@@ -304,7 +308,7 @@ li {
   margin-right: 10px;
 }
 
-.delete-icon > a > img{
+.delete-icon > a > img {
   width: 35px;
   height: auto;
 }
@@ -324,6 +328,7 @@ li {
   display: inline-block;
   width: 34px;
   height: 20px;
+  margin-left: 5px;
 }
 
 .switch input {
@@ -445,4 +450,74 @@ input:checked + .slider:before {
 .delete-icon > img:hover {
   cursor: pointer;
   background-color: #f9f7fe;
+}
+
+/* File upload */
+
+.file-upload-container {
+  margin-bottom: 30px;
+  padding: 5px;
+}
+
+.file-validation-container {
+  justify-content: unset;
+  gap: 25%;
+}
+
+.file-upload-toggle-container {
+  margin-bottom: 20px;
+}
+
+/* Style for the file-type-checkboxes container */
+.file-type-checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* Style for the checkboxes */
+.file-type-checkboxes label {
+  display: flex;
+  align-items: center;
+}
+
+.file-type-checkboxes input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  appearance: none;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.file-type-checkboxes input[type="checkbox"]:checked {
+  background-color: #6a727c;
+  border-color: grey;
+}
+
+.file-type-checkboxes input[type="checkbox"]:checked::before {
+  content: "✓";
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+.file-size-validation-box {
+  width: 70px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="20"><text x="0" y="15" font-size="14" opacity="0.8">MB</text></svg>')
+    no-repeat right;
+  background-position: right center;
+  color: #212832;
+}
+.file-size-validation-box::-webkit-outer-spin-button,
+.file-size-validation-box::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.file-size-label {
+  margin-right: 10px;
 }

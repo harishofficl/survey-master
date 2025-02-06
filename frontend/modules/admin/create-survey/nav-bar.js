@@ -1,4 +1,4 @@
-import htmlBuilder from "../../utils/htmlBuilder.js";
+import htmlBuilder from "../../../utils/htmlBuilder.js";
 
 const navBarElements = [
   {
