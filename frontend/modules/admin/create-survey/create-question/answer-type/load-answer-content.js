@@ -1,5 +1,5 @@
 import htmlBuilder from "../../../../../utils/htmlBuilder.js";
-import createNewOption from "./newOption.js";
+import createNewOption from "./new-option.js";
 import {
   shortAnswerDom,
   longAnswerDom,

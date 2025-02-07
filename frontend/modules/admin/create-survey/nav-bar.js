@@ -10,31 +10,15 @@ const navBarElements = [
         class: "nav-bar__logo open-sans-semibold",
         children: [
           {
-            tag: "a",
+            tag: "img",
             attributes: {
-              href: "#",
+              src: "./images/survey-icon.png",
+              alt: "Survey Master Logo",
             },
-            children: [
-              {
-                tag: "img",
-                attributes: {
-                  src: "./images/survey-icon.png",
-                  alt: "Survey Master Logo",
-                },
-              },
-            ],
           },
           {
-            tag: "a",
-            attributes: {
-              href: "#",
-            },
-            children: [
-              {
-                tag: "h1",
-                text: "Survey Master",
-              },
-            ],
+            tag: "h1",
+            text: "Survey Master",
           },
         ],
       },
@@ -43,17 +27,7 @@ const navBarElements = [
         class: "nav-bar__menu open-sans-regular",
         children: [
           {
-            tag: "a",
-            attributes: {
-              href: "#",
-            },
-            text: "Surveys",
-          },
-          {
-            tag: "a",
-            attributes: {
-              href: "#",
-            },
+            tag: "p",
             text: "Responses",
           },
         ],
@@ -63,20 +37,9 @@ const navBarElements = [
         class: "nav-bar__user open-sans-regular",
         children: [
           {
-            tag: "a",
-            class: "login",
-            attributes: {
-              href: "#",
-            },
-            text: "Login",
-          },
-          {
-            tag: "a",
-            class: "signup",
-            attributes: {
-              href: "#",
-            },
-            text: "Sign Up",
+            tag: "p",
+            class: "logout visually-hidden",
+            text: "Logout",
           },
           {
             tag: "div",
@@ -105,33 +68,7 @@ const navBarElements = [
   },
 ];
 
-const htmlString = `
-<div class="nav-bar white-bg">
-  <div class="nav-bar__logo open-sans-semibold">
-    <a href="#">
-      <img src="./images/survey-icon.png" alt="Survey Master Logo">
-    </a>
-    <a href="#">
-      <h1>Survey Master</h1>
-    </a>
-  </div>
-  <div class="nav-bar__menu open-sans-regular">
-    <a href="#">Surveys</a>
-    <a href="#">Responses</a>
-  </div>
-  <div class="nav-bar__user open-sans-regular">
-    <a class="login" href="#">Login</a>
-    <a class="signup" href="#">Sign Up</a>
-    <div class="user-icon">
-      <a href="#">
-        <img src="./images/user-icon.png" alt="User Icon">
-      </a>
-    </div>
-  </div> `;
-
-export default function() {
-  const html = htmlBuilder(navBarElements);
-  html.forEach((element) => {
-    document.getElementById("header").appendChild(element); // append to `header`
-  });
+export default function () {
+  const navBar = htmlBuilder(navBarElements)[0];
+  document.getElementById("header").replaceChildren(navBar); // append to `header`
 }

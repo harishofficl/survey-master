@@ -1,5 +1,5 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
-import eventListenersQuestion from "./eventListenersQuestion.js";
+import eventListenersQuestion from "./ques-event-listeners.js";
 
 const domJson = [
   {
@@ -222,9 +222,12 @@ const domJson = [
 export default function (prevQuesObject) {
   const questionObject = htmlBuilder(domJson)[0];
   if (prevQuesObject === undefined) {
-    document.querySelector(".survey-container").appendChild(questionObject);
+    // add questionObject after header-container
+    const surveyContainer = document.querySelector(".survey-container");
+    const headerContainer = surveyContainer.querySelector(".header-container");
+    surveyContainer.insertBefore(questionObject, headerContainer.nextSibling);
+
   } else {
-    console.log(prevQuesObject);
     // add questionObject after prevQuesObject.
     const surveyContainer = document.querySelector(".survey-container");
     surveyContainer.insertBefore(questionObject, prevQuesObject.nextSibling);

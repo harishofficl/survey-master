@@ -1,4 +1,4 @@
-import loadAnswerTypeContent from "./answer-type/loadAnswerContent.js";
+import loadAnswerTypeContent from "./answer-type/load-answer-content.js";
 import createQuestion from "./create-question.js";
 
 export default function (questionObject) {

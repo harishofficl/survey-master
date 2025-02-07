@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import createQuestion from "./create-question/create-question.js";
-import { eventListenersHeader } from "./eventListeners.js";
+import { eventListenersHeaderFooter } from "./event-listeners.js";
 import navBar from "./nav-bar.js";
 
 const domJson = [
@@ -43,6 +43,20 @@ const domJson = [
           },
         ],
       },
+      {
+        tag: "div",
+        class: "footer-container",
+        children: [
+          {
+            tag: "button",
+            class: "publish-btn",
+            text: "Publish",
+            attributes: {
+              id: "publish-survey-btn",
+            },
+          },
+        ],
+      },
     ],
   },
 ];
@@ -51,14 +65,16 @@ export default function () {
   // nav bar
   navBar();
 
-  // create-survey content
-  const elements = htmlBuilder(domJson);
-  elements.forEach((element) => {
-    document.getElementById("main").appendChild(element); // append to `main`
-  });
+  // title and description content
+  const surveyContainer = htmlBuilder(domJson)[0];
+  const mainContainer = document.getElementById("main");
+  mainContainer.replaceChildren(surveyContainer);
+
   // add event listeners for header
-  eventListenersHeader();
+  eventListenersHeaderFooter();
 
   // add first question
   createQuestion();
+
+
 }

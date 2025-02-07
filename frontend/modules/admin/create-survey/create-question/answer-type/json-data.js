@@ -362,26 +362,6 @@ export const fileDom = [
                 tag: "label",
                 class: "file-upload-label poppins-text",
                 text: "Allow only specified file types",
-                children: [
-                  {
-                    tag: "label",
-                    class: "switch",
-                    children: [
-                      {
-                        tag: "input",
-                        class: "file-upload-toggle",
-                        attributes: {
-                          type: "checkbox",
-                          value: "file-type",
-                        },
-                      },
-                      {
-                        tag: "span",
-                        class: "slider round",
-                      },
-                    ],
-                  },
-                ],
               },
             ],
           },
@@ -398,12 +378,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "document",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " Document",
                       },
                     ],
@@ -413,12 +396,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "spreadsheet",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " Spreadsheet",
                       },
                     ],
@@ -428,12 +414,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "pdf",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " PDF",
                       },
                     ],
@@ -443,12 +432,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "video",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " Video",
                       },
                     ],
@@ -458,12 +450,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "presentation",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " Presentation",
                       },
                     ],
@@ -473,12 +468,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "image",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " Image",
                       },
                     ],
@@ -488,12 +486,15 @@ export const fileDom = [
                     children: [
                       {
                         tag: "input",
+                        class: "file-type-value",
                         attributes: {
                           type: "checkbox",
                           value: "audio",
                         },
                       },
                       {
+                        tag: "p",
+                        class: "file-type-text",
                         text: " Audio",
                       },
                     ],
