@@ -12,7 +12,7 @@ export default function (questionObject) {
   // change module based on response type
   const answerTypeObject = questionObject.querySelector(".answer-type");
   answerTypeObject.addEventListener("change", () =>
-    loadAnswerTypeContent(answerTypeObject)
+    loadAnswerTypeContent(questionObject, answerTypeObject)
   );
 
   // add question

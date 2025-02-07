@@ -532,3 +532,101 @@ export const fileDom = [
     ],
   },
 ];
+
+export const mcqOptionDom = [
+  {
+    tag: "div",
+    attributes: {
+      class: "mcq-option",
+    },
+    children: [
+      {
+        tag: "div",
+        attributes: {
+          class: "option-icon",
+        },
+        children: [
+          {
+            tag: "img",
+            attributes: {
+              src: "./images/option-icon.png",
+              alt: "radio",
+            },
+          },
+        ],
+      },
+      {
+        tag: "input",
+        attributes: {
+          type: "text",
+          class: "mcq-option-text mcq-option-property",
+          placeholder: "Option",
+        },
+      },
+      {
+        tag: "div",
+        attributes: {
+          class: "delete-icon",
+        },
+        children: [
+          {
+            tag: "img",
+            attributes: {
+              src: "./images/x-mark.png",
+              alt: "x-mark.png",
+            },
+          },
+        ],
+      },
+    ],
+  },
+];
+
+export const checkboxOptionDom = [
+  {
+    tag: "div",
+    attributes: {
+      class: "mcq-option",
+    },
+    children: [
+      {
+        tag: "div",
+        attributes: {
+          class: "option-icon checkbox-icon",
+        },
+        children: [
+          {
+            tag: "img",
+            attributes: {
+              src: "./images/checkbox-icon.png",
+              alt: "radio",
+            },
+          },
+        ],
+      },
+      {
+        tag: "input",
+        attributes: {
+          type: "text",
+          class: "mcq-option-text mcq-option-property",
+          placeholder: "Option",
+        },
+      },
+      {
+        tag: "div",
+        attributes: {
+          class: "delete-icon",
+        },
+        children: [
+          {
+            tag: "img",
+            attributes: {
+              src: "./images/x-mark.png",
+              alt: "x-mark.png",
+            },
+          },
+        ],
+      },
+    ],
+  },
+];

@@ -222,7 +222,6 @@ const domJson = [
 export default function (prevQuesObject) {
   const questionObject = htmlBuilder(domJson)[0];
   if (prevQuesObject === undefined) {
-    console.log(questionObject);
     document.querySelector(".survey-container").appendChild(questionObject);
   } else {
     console.log(prevQuesObject);

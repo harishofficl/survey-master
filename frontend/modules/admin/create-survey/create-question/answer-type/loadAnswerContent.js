@@ -1,9 +1,19 @@
 import htmlBuilder from "../../../../../utils/htmlBuilder.js";
+import createNewOption from "./newOption.js";
+import {
+  shortAnswerDom,
+  longAnswerDom,
+  numberDom,
+  multipleChoiceDom,
+  checkboxDom,
+  fileDom,
+} from "./json-data.js";
 
-import { shortAnswerDom, longAnswerDom, numberDom, multipleChoiceDom, checkboxDom, fileDom } from "./json-data.js";
-
-export default function loadAnswerTypeContent(answerTypeElement) {
-  const answerTypeValue = answerTypeElement.value;
+export default function loadAnswerTypeContent(
+  questionObject,
+  answerTypeObject
+) {
+  const answerTypeValue = answerTypeObject.value;
 
   switch (answerTypeValue) {
     case "text":
@@ -13,30 +23,43 @@ export default function loadAnswerTypeContent(answerTypeElement) {
       loadContent(longAnswerDom);
       break;
     case "number":
-        loadContent(numberDom);
-        break;
+      loadContent(numberDom);
+      break;
     case "radio":
-        loadContent(multipleChoiceDom);
-        break;
+      loadContent(multipleChoiceDom, "radio");
+      break;
     case "checkbox":
-        loadContent(checkboxDom);
-        break;
+      loadContent(checkboxDom, "checkbox");
+      break;
     case "file":
-        loadContent(fileDom);
-        break;
+      loadContent(fileDom);
+      break;
     default:
-        loadContent(shortAnswerDom);
-        break;
+      loadContent(shortAnswerDom);
+      break;
   }
 
-  function loadContent(domJson) {
-    const mainContainer = answerTypeElement.parentElement.parentElement.parentElement.parentElement;
-    const answerContainer = mainContainer.querySelector(".answer-main-container");
+  function loadContent(domJson, type) {
+    const answerContainer = questionObject.querySelector(
+      ".answer-main-container"
+    );
+    const answerTypeContentObject = htmlBuilder(domJson)[0];
+    answerContainer.replaceChildren(answerTypeContentObject);
 
-    const htmlElements = htmlBuilder(domJson);
+    // add event listeners for mcq and radio type add option button
+    if (type === "radio" || type === "checkbox") {
+      const addOptionObject =
+        answerTypeContentObject.querySelector(".mcq-add-option");
+      addOptionObject.addEventListener("click", () =>
+        createNewOption(answerTypeContentObject, type)
+      );
 
-    htmlElements.forEach((element) => {
-      answerContainer.replaceChildren(element);
-    });
+      // add event listeners for mcq and radio type remove option button
+      const deleteOptionObject = answerTypeContentObject.querySelector(".delete-icon");
+      deleteOptionObject.addEventListener("click", () => {
+        deleteOptionObject.parentElement.remove();
+      });
+      
+    }
   }
 }
