@@ -30,14 +30,6 @@ const elements = [
   },
 ];
 
-const html = `
-  <div class="container">
-    <header class="header" id="header"></header>
-    <main class="main" id="main"></main>
-    <footer class="footer" id="footer"></footer>
-  </div>
-`;
-
 const domObjects = htmlBuilder(elements);
 
 for (const domObject of domObjects) {

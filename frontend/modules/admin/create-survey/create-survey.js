@@ -10,8 +10,20 @@ const domJson = [
     children: [
       {
         tag: "div",
+        class: "create-survey-title-container poppins-normal",
+        children: [
+          {
+            tag: "h1",
+            class: "create-survey-title",
+            text: "Create Survey",
+          },
+        ],
+      },
+      {
+        tag: "div",
         class: "header-container white-bg border",
         children: [
+          
           {
             tag: "div",
             class: "title-container poppins-bold",
@@ -48,12 +60,18 @@ const domJson = [
         class: "footer-container",
         children: [
           {
-            tag: "button",
-            class: "publish-btn",
-            text: "Publish",
-            attributes: {
-              id: "publish-survey-btn",
-            },
+            tag: "div",
+            class: "footer-button-container poppins-semibold",
+            children: [
+              {
+                tag: "button",
+                class: "publish-btn poppins-semibold",
+                text: "Publish",
+                attributes: {
+                  id: "publish-survey-btn",
+                },
+              },
+            ],
           },
         ],
       },
@@ -75,6 +93,4 @@ export default function () {
 
   // add first question
   createQuestion();
-
-
 }

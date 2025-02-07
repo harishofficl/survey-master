@@ -1,5 +1,5 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
-import { eventListenersNav } from "./event-listeners.js";
+import { navBarEventListener } from "./event-listeners.js";
 
 const navBarElements = [
   {
@@ -29,8 +29,8 @@ const navBarElements = [
         children: [
           {
             tag: "p",
-            class: "nav-bar__menu-item dashboard-button",
-            text: "Dashboard",
+            class: "nav-bar__menu-item create-survey-button",
+            text: "Create Survey",
           },
         ],
       },
@@ -66,6 +66,6 @@ export default function () {
   const navBar = htmlBuilder(navBarElements)[0];
   document.getElementById("header").replaceChildren(navBar); // append to `header`
 
-  // event listeners for nav bar
-  eventListenersNav(navBar);
+  // event listeners
+  navBarEventListener(navBar);
 }
