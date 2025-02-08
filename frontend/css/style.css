@@ -590,7 +590,7 @@ input:checked + .slider:before {
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -655,5 +655,70 @@ input:checked + .slider:before {
 }
 
 .survey-card-button:hover {
+  background-color: #5b708a;
+}
+
+
+/* Responses View Styles */
+
+.responses-container {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #d4d7db;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.responses-header {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.responses-header__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #212832;
+  margin-bottom: 20px;
+}
+
+.responses-body {
+  overflow-x: auto;
+}
+
+.responses-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responses-table th,
+.responses-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #d4d7db;
+}
+
+.responses-table th {
+  background-color: #f9f7fe;
+  font-weight: 600;
+  color: #212832;
+}
+
+.responses-table tr:nth-child(even) {
+  background-color: #f9f7fe;
+}
+
+.view-response-button {
+  background-color: #37485d;
+  color: #f0f4fd;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.view-response-button:hover {
   background-color: #5b708a;
 }
