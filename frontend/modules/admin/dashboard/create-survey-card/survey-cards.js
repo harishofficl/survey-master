@@ -38,6 +38,9 @@ export default function (dashboardBody) {
     return {
       tag: "div",
       class: "survey-card",
+      attributes: {
+        id: survey.id,
+      },
       children: [
         {
           tag: "h3",

@@ -57,8 +57,27 @@ const domJson = [
                             children: [
                               {
                                 tag: "button",
-                                class: "view-response-button",
-                                text: "👁️",
+                                class: "view-response-button poppins-normal",
+                                text: "View Response",
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                      // Sample row
+                      {
+                        tag: "tr",
+                        children: [
+                          { tag: "td", text: "2" },
+                          { tag: "td", text: "Harish S" },
+                          { tag: "td", text: "2025-01-21 11:51 AM" },
+                          {
+                            tag: "td",
+                            children: [
+                              {
+                                tag: "button",
+                                class: "view-response-button poppins-normal",
+                                text: "View Response",
                               },
                             ],
                           },

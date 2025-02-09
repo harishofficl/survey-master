@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import navBar from "./nav-bar.js";
-import buildSurveyCards from "./create-survey-card/survey-cards.js";
+import listSurveyCards from "./list-all-surveys/list-survey-cards.js";
 import { dashboardEventListener } from "./event-listeners.js";
 
 const domJson = [
@@ -27,6 +27,7 @@ const domJson = [
   },
 ];
 
+
 export default function () {
   // navBar
   navBar();
@@ -37,7 +38,7 @@ export default function () {
 
   // list survey cards from db
   const dashboardBody = dashboard.querySelector(".dashboard-body");
-  buildSurveyCards(dashboardBody);
+  listSurveyCards(dashboardBody);
 
   // event listeners
   dashboardEventListener();

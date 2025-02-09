@@ -30,6 +30,10 @@ li {
   display: flex;
 }
 
+.user-question-input {
+  all: unset;
+}
+
 .open-sans-regular {
   font-family: "Open Sans", serif;
   font-weight: 500;
@@ -721,4 +725,147 @@ input:checked + .slider:before {
 
 .view-response-button:hover {
   background-color: #5b708a;
+}
+
+/* ----------------------------- Dashboard end------------------------------------------ */
+
+/* Fill survey */
+
+.fill-survey-header-title {
+  font-size: 26px;
+}
+
+.fill-survey-title {
+  font-size: 22px;
+  padding: 5px 5px 15px 5px;
+}
+
+.fill-survey-description {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: justify;
+}
+
+/* user fill survey */
+
+.user-question-container {
+  margin-bottom: 15px;
+}
+
+.user-question {
+  font-size: 18px;
+  font-weight: 600;
+  color: #212832;
+  padding: 0 10px;
+}
+
+.user-answer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 10px;
+}
+
+.user-question-input {
+  width: 50%;
+  padding: 5px;
+  border-bottom: 1px solid #d4d7db;
+  font-size: 14px;
+  color: #212832;
+}
+
+.user-question-input:focus {
+  border-bottom: 2px solid #5a6066;
+}
+
+.user-question-input-text {
+  border: none;
+  border-radius: 0;
+  width: 80%;
+  border-bottom: 1px solid rgb(126, 126, 126);
+  color: #212832;
+  font-size: 15px;
+}
+
+.user-question-input-text:focus, .question-text:focus {
+  border-bottom: 2px solid #5a6066;
+}
+
+.user-question-input-textarea {
+  width: 80%;
+}
+
+.user-question-input-number {
+  height: 20px;
+}
+
+.user-question-input-file {
+  height: 30px;
+}
+
+.user-answer-option-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-question-option-text {
+  font-size: 15px;
+  color: #212832;
+}
+
+.user-question-radio-input {
+  width: 15px;
+  height: 15px;
+  appearance: none;
+  border: 2px solid #d4d7db;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-question-radio-input:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #6a727c;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user-question-checkbox-input {
+  width: 15px;
+  height: 15px;
+  appearance: none;
+  border: 2px solid #d4d7db;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-question-checkbox-input:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background-color: #6a727c;
+  transform: translate(-50%, -50%);
+}
+
+
+.user-question-file-input {
+  all: unset;
+  width: 50%;
+  padding: 5px;
+  border-bottom: 1px solid #d4d7db;
+  font-size: 14px;
+  color: #212832;
 }
