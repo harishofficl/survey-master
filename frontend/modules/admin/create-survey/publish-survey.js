@@ -4,7 +4,8 @@ export default function () {
   const questions = document.querySelectorAll(".question-main-container");
   const questionArray = [];
 
-  questions.forEach((question) => {
+  questions.forEach((question, index) => {
+    const questionId = index + 1;
     const questionText = question.querySelector(".question-text").value;
     const questionType = question.querySelector(".answer-type").value;
     if (questionType === "text" || questionType === "paragraph") {
@@ -13,6 +14,7 @@ export default function () {
       const maxLength = validationLengths[1].value;
       const required = question.querySelector(".required-toggle").checked;
       questionArray.push({
+        id: questionId,
         question: questionText,
         type: questionType,
         minLength,
@@ -25,6 +27,7 @@ export default function () {
       const maxRange = validationLengths[1].value;
       const required = question.querySelector(".required-toggle").checked;
       questionArray.push({
+        id: questionId,
         question: questionText,
         type: questionType,
         minRange,
@@ -39,6 +42,7 @@ export default function () {
       });
       const required = question.querySelector(".required-toggle").checked;
       questionArray.push({
+        id: questionId,
         question: questionText,
         type: questionType,
         options: optionArray,
@@ -53,6 +57,7 @@ export default function () {
         if (fileType.checked) fileTypes.push(fileType.value);
       });
       questionArray.push({
+        id: questionId,
         question: questionText,
         type: questionType,
         maxFileSize,

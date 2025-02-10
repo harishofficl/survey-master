@@ -662,7 +662,6 @@ input:checked + .slider:before {
   background-color: #5b708a;
 }
 
-
 /* Responses View Styles */
 
 .responses-container {
@@ -787,12 +786,15 @@ input:checked + .slider:before {
   font-size: 15px;
 }
 
-.user-question-input-text:focus, .question-text:focus {
+.user-question-input-text:focus,
+.question-text:focus {
   border-bottom: 2px solid #5a6066;
 }
 
 .user-question-input-textarea {
   width: 80%;
+  font-size: 15px;
+  color: #212832;
 }
 
 .user-question-input-number {
@@ -822,19 +824,17 @@ input:checked + .slider:before {
   border-radius: 50%;
   outline: none;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-question-radio-input:checked::before {
   content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   background-color: #6a727c;
   border-radius: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .user-question-checkbox-input {
@@ -845,21 +845,18 @@ input:checked + .slider:before {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-question-checkbox-input:checked::before {
   content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 2px;
+  width: 11px;
+  height: 11px;
   background-color: #6a727c;
-  transform: translate(-50%, -50%);
+  border-radius: 2px;
 }
-
 
 .user-question-file-input {
   all: unset;
@@ -869,3 +866,11 @@ input:checked + .slider:before {
   font-size: 14px;
   color: #212832;
 }
+
+.poppins-normal-copy {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+/* ----------------------------- Fill survey end------------------------------------------ */

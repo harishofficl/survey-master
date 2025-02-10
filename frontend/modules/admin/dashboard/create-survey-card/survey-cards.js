@@ -67,9 +67,10 @@ export default function (dashboardBody) {
   });
 
   // append survey cards to dashboard
-  const surveyCardsObject = htmlBuilder(surveyCards);
-  dashboardBody.append(...surveyCardsObject);
-
-  // event listeners
-  surveyCardEventListener(dashboardBody);
+  const surveyCardsObjects = htmlBuilder(surveyCards);
+  surveyCardsObjects.forEach((surveyCard) => {
+    dashboardBody.appendChild(surveyCard);
+    // add event listener to each survey card
+    surveyCardEventListener(surveyCard);
+  });
 }

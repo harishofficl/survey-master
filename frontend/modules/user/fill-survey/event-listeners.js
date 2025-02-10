@@ -17,35 +17,51 @@ export function fillSurveyEventListener(surveyObject) {
         const questionText =
           answerContainer.querySelector(".user-question").textContent;
         const inputElement = answerContainer.querySelector(
-          ".user-question-input, .user-question-input-textarea, .user-question-input-number, .user-question-radio-input:checked, .user-question-checkbox-input:checked, .user-question-file-input"
+          ".user-question-input-text, .user-question-input-textarea, .user-question-input-number, .user-question-radio-input, .user-question-checkbox-input, .user-question-file-input"
         );
 
         let answerValue;
+        let answerType;
 
         if (inputElement) {
           if (inputElement.type === "radio") {
-            answerValue = inputElement.value;
+            // Get the selected radio button value
+            if (inputElement.checked) answerValue = inputElement.value;
+            answerType = "radio";
           } else if (inputElement.type === "checkbox") {
             answerValue = Array.from(
               answerContainer.querySelectorAll(
                 ".user-question-checkbox-input:checked"
               )
             ).map((checkbox) => checkbox.value);
+            answerType = "checkbox";
           } else if (inputElement.type === "file") {
             answerValue = inputElement.files[0];
+            answerType = "file";
+          } else if (inputElement.type === "textarea") {
+            answerValue = inputElement.value;
+            answerType = "paragraph";
           } else {
             answerValue = inputElement.value;
+            answerType = inputElement.type;
           }
         }
-
+        if (answerType === "checkbox") {
+          return {
+            id: index + 1,
+            question: questionText,
+            type: answerType,
+            option: answerValue,
+          };
+        }
         return {
+          id: index + 1,
           question: questionText,
+          type: answerType,
           answer: answerValue,
         };
       }),
     };
-
     console.log(response);
-    // You can now send the response object to your server using fetch or any other method
   });
 }

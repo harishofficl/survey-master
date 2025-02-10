@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class Question {
+public class Question {
     private String question;
     private String type;
     private boolean required;

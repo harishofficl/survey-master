@@ -54,7 +54,7 @@ export default function (question, type, questionNumber) {
           children: [
             {
               tag: "textarea",
-              class: "question-text user-question-input-textarea poppins-normal",
+              class: "question-text user-question-input-textarea poppins-normal-copy",
             },
           ],
         },

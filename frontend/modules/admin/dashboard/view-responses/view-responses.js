@@ -1,4 +1,5 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
+import listResponses from "./list-responses.js";
 
 const domJson = [
   {
@@ -36,7 +37,7 @@ const domJson = [
                         children: [
                           { tag: "th", text: "S.No" },
                           { tag: "th", text: "Responder Name" },
-                          { tag: "th", text: "Responded DateTime" },
+                          { tag: "th", text: "Date Time" },
                           { tag: "th", text: "View Response" },
                         ],
                       },
@@ -44,46 +45,6 @@ const domJson = [
                   },
                   {
                     tag: "tbody",
-                    children: [
-                      // Sample row
-                      {
-                        tag: "tr",
-                        children: [
-                          { tag: "td", text: "1" },
-                          { tag: "td", text: "John Doe" },
-                          { tag: "td", text: "2025-02-08 10:00 AM" },
-                          {
-                            tag: "td",
-                            children: [
-                              {
-                                tag: "button",
-                                class: "view-response-button poppins-normal",
-                                text: "View Response",
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                      // Sample row
-                      {
-                        tag: "tr",
-                        children: [
-                          { tag: "td", text: "2" },
-                          { tag: "td", text: "Harish S" },
-                          { tag: "td", text: "2025-01-21 11:51 AM" },
-                          {
-                            tag: "td",
-                            children: [
-                              {
-                                tag: "button",
-                                class: "view-response-button poppins-normal",
-                                text: "View Response",
-                              },
-                            ],
-                          },
-                        ],
-                      },
-                    ],
                   },
                 ],
               },
@@ -95,7 +56,11 @@ const domJson = [
   },
 ];
 
-export default function () {
+export default function (surveyId) {
   const responses = htmlBuilder(domJson)[0];
   document.getElementById("main").replaceChildren(responses);
+
+  // Add event listener to view response button
+  const responsesTable = document.querySelector(".responses-table");
+  listResponses(responsesTable, surveyId);
 }

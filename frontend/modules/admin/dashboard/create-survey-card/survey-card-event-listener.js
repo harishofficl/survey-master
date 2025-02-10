@@ -1,13 +1,10 @@
 import loadSurveyResponses from "../view-responses/view-responses.js";
 
-export default function (dashboardBody) {
+export default function (surveyCard) {
 
-    const surveyCardViewResponses = dashboardBody.querySelectorAll(".survey-card-button");
-
-    surveyCardViewResponses.forEach((surveyCardViewResponse) => {
-        surveyCardViewResponse.addEventListener("click", () => {
-            // load survey responses
-            loadSurveyResponses(surveyCardViewResponse.parentElement); // pass survey card
-        });
+    const surveyCardButton = surveyCard.querySelector(".survey-card-button");
+    surveyCardButton.addEventListener("click", () => {
+        const surveyId = surveyCard.getAttribute("id");
+        loadSurveyResponses(surveyId);
     });
 }

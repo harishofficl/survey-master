@@ -85,4 +85,6 @@ export default function (surveyId) {
 
   // event listeners
   fillSurveyEventListener(surveyForm);
+
+  return surveyForm;
 }
