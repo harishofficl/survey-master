@@ -27,11 +27,7 @@ const navBarElements = [
         tag: "div",
         class: "nav-bar__menu open-sans-regular",
         children: [
-          {
-            tag: "p",
-            class: "nav-bar__menu-item dashboard-button",
-            text: "Dashboard",
-          },
+          
         ],
       },
       {

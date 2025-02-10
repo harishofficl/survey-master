@@ -1,13 +1,9 @@
-import createSurveyInit from "../modules/admin/create-survey/create-survey.js";
 import adminDashboardInit from "../modules/admin/dashboard/dashboard.js";
 import userDashboardInit from "../modules/user/dashboard/dashboard.js";
+import loginInit from "../modules/auth/login.js";
 
-// create survey body init
-// createSurveyInit();
+loginInit();
 
-// dashboard body init
-adminDashboardInit();
-
-// user dashboard init
+// adminDashboardInit();
 
 // userDashboardInit();

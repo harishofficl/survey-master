@@ -1,5 +1,7 @@
+import dashboardInit from "../dashboard/dashboard.js";
+
 export function navBarEventListener(navBarObject) {
-  //...
+  navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => dashboardInit());
 }
 
 export function fillSurveyEventListener(surveyObject) {

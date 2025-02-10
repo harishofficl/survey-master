@@ -1,4 +1,4 @@
-import htmlBuilder from "../../../utils/htmlBuilder.js";
+import htmlBuilder from "../../utils/htmlBuilder.js";
 import { navBarEventListener } from "./event-listeners.js";
 
 const navBarElements = [
@@ -40,12 +40,12 @@ const navBarElements = [
         children: [
           {
             tag: "p",
-            class: "hello-user-text poppins-normal",
-            text: `Hello, ${localStorage.getItem("admin")}`,
+            class: "logout visually-hidden",
+            text: "Logout",
           },
           {
             tag: "div",
-            class: "user-icon",
+            class: "user-icon visually-hidden",
             children: [
               {
                 tag: "img",

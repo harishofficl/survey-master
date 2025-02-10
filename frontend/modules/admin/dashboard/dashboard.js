@@ -23,6 +23,17 @@ const domJson = [
         tag: "div",
         class: "dashboard-body poppins-normal",
       },
+      {
+        tag: "div",
+        class: "create-survey-floating-button-container fixed",
+        children: [
+          {
+            tag: "button",
+            class: "create-survey-floating-button poppins-normal",
+            text: "+",
+          },
+        ],
+      }
     ],
   },
 ];

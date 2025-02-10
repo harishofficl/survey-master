@@ -103,6 +103,83 @@ li {
 .white-bg {
   background-color: white;
 }
+/* login page */
+
+/* Login Container Styles */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f7fe;
+}
+
+.login-form-container {
+  width: 400px;
+  margin-top: 50px;
+  background-color: white;
+  border: 1px solid #d4d7db;
+  border-radius: 8px;
+  padding: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-title {
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-size: 24px;
+  color: #212832;
+  text-align: center;
+}
+
+.login-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-label {
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #212832;
+}
+
+.login-input {
+  padding: 10px;
+  border: 1px solid #d4d7db;
+  border-radius: 4px;
+  font-family: "Poppins", serif;
+  font-size: 14px;
+  color: #212832;
+}
+
+.login-input:focus {
+  border-color: #5a6066;
+  outline: none;
+}
+
+.login-button {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #37485d;
+  color: #f0f4fd;
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #5b708a;
+}
 
 /* Nav Bar */
 .nav-bar {
@@ -134,7 +211,7 @@ li {
 
 .nav-bar__menu {
   display: flex;
-  flex: 1;
+  flex: 0.5;
   align-items: center;
 }
 
@@ -156,6 +233,11 @@ li {
 
 .nav-bar__user > * {
   margin: 0 10px;
+  color: #212832;
+}
+
+.hello-user-text{
+ margin-top: 2px;
 }
 
 .nav-bar__user > *:hover {
@@ -168,6 +250,50 @@ li {
   margin: 5px 10px 0 5px;
 }
 
+/* Create Survey Floating Button */
+.create-survey-floating-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.create-survey-floating-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #37485d;
+  color: #f0f4fd;
+  font-family: "Poppins", serif;
+  font-size: 40px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.create-survey-floating-button:hover {
+  background-color: #5b708a;
+}
+
+.create-survey-floating-button:hover::after {
+  content: "Create Survey";
+  position: absolute;
+  bottom: 60px;
+  right: 100%;
+  transform: translateX(50%);
+  background-color: #37485d;
+  color: #f0f4fd;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 /* create survey */
 
 .text-box {
@@ -175,6 +301,10 @@ li {
   width: 100%;
   border-bottom: 1px solid rgb(126, 126, 126);
   padding: 0 5px;
+}
+
+.text-box:focus {
+  border-bottom: 2px solid #5a6066;
 }
 
 .validation-box {
@@ -441,7 +571,6 @@ input:checked + .slider:before {
 }
 
 .mcq-option-property:focus {
-  transition: 0.1s;
   border-bottom: 2px solid #5a6066;
 }
 

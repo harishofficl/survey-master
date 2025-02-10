@@ -15,6 +15,5 @@ export function eventListenersHeaderFooter() {
 
 // event listeners for nav bar
 export function eventListenersNav(navBar) {
-  // load admin dashboard
-  navBar.querySelector(".dashboard-button").addEventListener("click", () => dashboardInit());
+  navBar.querySelector(".nav-bar__logo").addEventListener("click", () => dashboardInit());
 }

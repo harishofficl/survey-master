@@ -13,12 +13,11 @@ export default function (response) {
     const title = fillSurveyPage.querySelector(".create-survey-title-container > h1");
     title.textContent = "View Response";
 
-    console.log(fillSurveyPage);
-    console.log(response.responses);
+    const footerContainer = fillSurveyPage.querySelector(".footer-container");
+    footerContainer.remove();
 
     // insert response data
     const allQuestions = fillSurveyPage.querySelectorAll(".question-main-container");
-    console.log(allQuestions);
 
     allQuestions.forEach((question, index) => {
         if(response.responses[index].type === "text") {

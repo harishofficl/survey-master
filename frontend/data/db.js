@@ -1,3 +1,33 @@
+export const users = [
+  {
+    id: "user-1",
+    name: "User",
+    email: "user",
+    password: "user",
+  },
+  {
+    id: "user-2",
+    name: "Harish S",
+    email: "harish",
+    password: "harish",
+  },
+];
+
+export const admins = [
+  {
+    id: "admin-1",
+    name: "Admin",
+    email: "admin",
+    password: "admin",
+  },
+  {
+    id: "admin-2",
+    name: "BOSS",
+    email: "boss",
+    password: "boss",
+  }
+];
+
 export const surveys = [
   {
     id: "survey-7",
@@ -18,7 +48,13 @@ export const surveys = [
         id: "2",
         question: "How satisfied are you with your job?",
         type: "radio",
-        options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+        options: [
+          "Very Satisfied",
+          "Satisfied",
+          "Neutral",
+          "Dissatisfied",
+          "Very Dissatisfied",
+        ],
         required: true,
       },
       {
@@ -128,7 +164,13 @@ export const surveys = [
         id: "2",
         question: "How satisfied are you with the event?",
         type: "radio",
-        options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+        options: [
+          "Very Satisfied",
+          "Satisfied",
+          "Neutral",
+          "Dissatisfied",
+          "Very Dissatisfied",
+        ],
         required: true,
       },
       {
@@ -183,7 +225,13 @@ export const surveys = [
         id: "2",
         question: "How satisfied are you with our customer service?",
         type: "radio",
-        options: ["Very Satisfied", "Satisfied", "Neutral", "Dissatisfied", "Very Dissatisfied"],
+        options: [
+          "Very Satisfied",
+          "Satisfied",
+          "Neutral",
+          "Dissatisfied",
+          "Very Dissatisfied",
+        ],
         required: true,
       },
       {
@@ -238,7 +286,13 @@ export const surveys = [
         id: "2",
         question: "How easy is it to navigate our website?",
         type: "radio",
-        options: ["Very Easy", "Easy", "Neutral", "Difficult", "Very Difficult"],
+        options: [
+          "Very Easy",
+          "Easy",
+          "Neutral",
+          "Difficult",
+          "Very Difficult",
+        ],
         required: true,
       },
       {
@@ -279,14 +333,14 @@ export const surveys = [
 export const surveyResponses = [
   {
     surveyId: "survey-7",
-    responderName: "Alice Johnson",
+    responderName: "Harish S",
     createdAt: "2025-02-08 10:00 AM",
     responses: [
       {
         id: "1",
         question: "What is your name?",
         type: "text",
-        answer: "Alice Johnson",
+        answer: "Harish S",
         createdAt: "2025-02-08 10:00 AM",
       },
       {
@@ -377,14 +431,14 @@ export const surveyResponses = [
   },
   {
     surveyId: "survey-9",
-    responderName: "Charlie Brown",
+    responderName: "Dhanvanth S B",
     createdAt: "2025-02-08 12:00 PM",
     responses: [
       {
         id: "1",
         question: "What is your name?",
         type: "text",
-        answer: "Charlie Brown",
+        answer: "Dhanvanth S B",
         createdAt: "2025-02-08 12:00 PM",
       },
       {
@@ -475,14 +529,14 @@ export const surveyResponses = [
   },
   {
     surveyId: "survey-11",
-    responderName: "Eve Adams",
+    responderName: "Suganth",
     createdAt: "2025-02-08 02:00 PM",
     responses: [
       {
         id: "1",
         question: "What is your name?",
         type: "text",
-        answer: "Eve Adams",
+        answer: "Suganth",
         createdAt: "2025-02-08 02:00 PM",
       },
       {
