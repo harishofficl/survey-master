@@ -1,13 +1,8 @@
 package com.trustrace.survey.view;
 
-import com.trustrace.survey.model.Question;
 import com.trustrace.survey.model.Survey;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-
-
-import java.util.Date;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

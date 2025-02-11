@@ -1,13 +1,10 @@
 package com.trustrace.survey.view;
 
-import com.trustrace.survey.model.Answer;
 import com.trustrace.survey.model.Response;
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Date;
-import java.util.List;
+
 
 @Data
 @NoArgsConstructor

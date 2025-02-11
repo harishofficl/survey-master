@@ -3,7 +3,6 @@ package com.trustrace.survey.model;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
