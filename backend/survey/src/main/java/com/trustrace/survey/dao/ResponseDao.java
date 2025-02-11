@@ -1,6 +1,7 @@
 package com.trustrace.survey.dao;
 
 import com.trustrace.survey.model.Response;
+import com.trustrace.survey.view.ResponseView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,10 @@ public class ResponseDao {
         return Optional.ofNullable(response);
     }
 
-    public List<Response> getResponsesBySurveyId(String surveyId) {
+    public List<ResponseView> getResponsesBySurveyId(String surveyId) {
         logger.info("Fetching responses for survey id: {}", surveyId);
         Query query = new Query(Criteria.where("surveyId").is(surveyId));
-        return mongoTemplate.find(query, Response.class);
+        return mongoTemplate.find(query, Response.class).stream().map(ResponseView::new).toList();
     }
 
     public Response createResponse(Response response) {

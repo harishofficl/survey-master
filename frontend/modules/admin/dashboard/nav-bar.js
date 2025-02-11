@@ -1,5 +1,6 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { navBarEventListener } from "./event-listeners.js";
+import { currentUser } from "../../../data/db.js";
 
 const navBarElements = [
   {
@@ -41,7 +42,7 @@ const navBarElements = [
           {
             tag: "p",
             class: "hello-user-text poppins-normal",
-            text: `Hello, ${localStorage.getItem("admin")}`,
+            text: `Hello, ${currentUser.name}`,
           },
           {
             tag: "div",

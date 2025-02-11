@@ -1,10 +1,24 @@
 import dashboardInit from "../dashboard/dashboard.js";
+import { currentUser } from "../../../data/db.js";
+
+// post response to the server
+async function postResponse(response) {
+  const api = `http://localhost:8080/api/responses`;
+  await fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(response),
+  });
+}
 
 export function navBarEventListener(navBarObject) {
   navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => dashboardInit());
 }
 
-export function fillSurveyEventListener(surveyObject) {
+export async function fillSurveyEventListener(surveyObject) {
+
   const submitButton = surveyObject.querySelector(".submit-user-response-btn");
 
   submitButton.addEventListener("click", function () {
@@ -14,9 +28,8 @@ export function fillSurveyEventListener(surveyObject) {
     );
 
     const response = {
-      surveyId: surveyObject.id,
-      responderName: localStorage.getItem("user"),
-      createdAt: new Date(),
+      surveyId: surveyObject.getAttribute("id"),
+      responderName: currentUser.name,
       responses: Array.from(answers).map((answerContainer, index) => {
         const questionText =
           answerContainer.querySelector(".user-question").textContent;
@@ -30,7 +43,10 @@ export function fillSurveyEventListener(surveyObject) {
         if (inputElement) {
           if (inputElement.type === "radio") {
             // Get the selected radio button value
-            if (inputElement.checked) answerValue = inputElement.value;
+            const selectedRadio = answerContainer.querySelector(
+              ".user-question-radio-input:checked"
+            );
+            if (selectedRadio) answerValue = selectedRadio.value;
             answerType = "radio";
           } else if (inputElement.type === "checkbox") {
             answerValue = Array.from(
@@ -40,7 +56,7 @@ export function fillSurveyEventListener(surveyObject) {
             ).map((checkbox) => checkbox.value);
             answerType = "checkbox";
           } else if (inputElement.type === "file") {
-            answerValue = inputElement.files[0];
+            answerValue = inputElement.files[0].name; // Get the file name
             answerType = "file";
           } else if (inputElement.type === "textarea") {
             answerValue = inputElement.value;
@@ -55,7 +71,7 @@ export function fillSurveyEventListener(surveyObject) {
             id: index + 1,
             question: questionText,
             type: answerType,
-            option: answerValue,
+            options: answerValue,
           };
         }
         return {
@@ -66,7 +82,7 @@ export function fillSurveyEventListener(surveyObject) {
         };
       }),
     };
-    console.log(response);
+    postResponse(response);
     swal(
       "Response Submitted",
       "Your response is submitted successfully...",

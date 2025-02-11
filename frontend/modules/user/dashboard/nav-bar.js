@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { navBarEventListener } from "./event-listeners.js";
-
+import { currentUser } from "../../../data/db.js";
 const navBarElements = [
   {
     tag: "div",
@@ -41,7 +41,7 @@ const navBarElements = [
           {
             tag: "p",
             class: "hello-user-text",
-            text: `Hello, ${localStorage.getItem("user")}`,
+            text: `Hello, ${currentUser.name}`, // currentUser is imported from db.js
           },
           {
             tag: "div",

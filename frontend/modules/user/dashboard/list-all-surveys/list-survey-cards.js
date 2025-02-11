@@ -1,8 +1,19 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
-import { surveys } from "../../../../data/db.js";
 import surveyCardEventListener from "./event-listeners.js";
 
-export default function (dashboardBody) {
+async function fetchSurveys(page, size) {
+  if (!page) page = 0;
+  if (!size) size = 6;
+  const api = `http://localhost:8080/api/surveys?page=${page}&size=${size}`;
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+}
+
+
+export default async function (dashboardBody) {
+
+  const surveys = await fetchSurveys();
   const surveyCards = surveys.map((survey) => {
     return {
       tag: "div",

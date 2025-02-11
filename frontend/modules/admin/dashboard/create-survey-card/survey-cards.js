@@ -1,6 +1,6 @@
-import { surveys } from "../../../../data/db.js"; // sample db
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import surveyCardEventListener from "./survey-card-event-listener.js";
+import { currentUser } from "../../../../data/db.js";
 
 // sample domStructure
 /*
@@ -31,9 +31,17 @@ import surveyCardEventListener from "./survey-card-event-listener.js";
     ],
   },
 */
+// fetch surveys from db
+async function fetchSurveyCards(userId) {
+  const api = `http://localhost:8080/api/surveys/user?userId=${userId}`;
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+}
 
 // function to create survey card
-export default function (dashboardBody) {
+export default async function (dashboardBody) {
+  const surveys =  await fetchSurveyCards(currentUser.id);
   const surveyCards = surveys.map((survey) => {
     return {
       tag: "div",
@@ -55,7 +63,7 @@ export default function (dashboardBody) {
         {
           tag: "p",
           class: "survey-card-responses",
-          text: `Total Responses: ${survey.responses}`,
+          text: `Total Responses: ${survey.responseCount}`,
         },
         {
           tag: "button",

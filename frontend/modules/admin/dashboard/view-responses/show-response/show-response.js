@@ -1,63 +1,74 @@
-import fillSurvey from '../../../../user/fill-survey/fill-survey.js';
-import showResponseEventListeners from './event-listeners.js';
+import fillSurvey from "../../../../user/fill-survey/fill-survey.js";
+import showResponseEventListeners from "./event-listeners.js";
 
-export default function (response) {
+async function fetchResponse(responseId) {
+  const api = `http://localhost:8080/api/responses/${responseId}`;
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+}
 
-    // show-response page
-    const mainContainer = document.querySelector(".main");
+export default async function (responseId) {
+  const response = await fetchResponse(responseId);
+  // show-response page
+  const mainContainer = document.querySelector(".main");
 
-    // load fill survey page content without submit button
-    
-    const fillSurveyPage = fillSurvey(response.surveyId);
+  // load fill survey page content without submit button
 
-    const title = fillSurveyPage.querySelector(".create-survey-title-container > h1");
-    title.textContent = "View Response";
+  const fillSurveyPage = await fillSurvey(response.surveyId);
 
-    const footerContainer = fillSurveyPage.querySelector(".footer-container");
-    footerContainer.remove();
+  const title = fillSurveyPage.querySelector(
+    ".create-survey-title-container > h1"
+  );
+  title.textContent = "View Response";
 
-    // insert response data
-    const allQuestions = fillSurveyPage.querySelectorAll(".question-main-container");
+  const footerContainer = fillSurveyPage.querySelector(".footer-container");
+  footerContainer.remove();
 
-    allQuestions.forEach((question, index) => {
-        if(response.responses[index].type === "text") {
-            const input = question.querySelector(".user-question-input-text");
-            input.value = response.responses[index].answer;
-            input.disabled = true;
+  // insert response data
+  const allQuestions = fillSurveyPage.querySelectorAll(
+    ".question-main-container"
+  );
+
+  allQuestions.forEach((question, index) => {
+    if (response.responses[index].type === "text") {
+      const input = question.querySelector(".user-question-input-text");
+      input.value = response.responses[index].answer;
+      input.disabled = true;
+    } else if (response.responses[index].type === "paragraph") {
+      const input = question.querySelector(".user-question-input-textarea");
+      input.value = response.responses[index].answer;
+      input.disabled = true;
+    } else if (response.responses[index].type === "number") {
+      const input = question.querySelector(".user-question-input-number");
+      input.value = response.responses[index].answer;
+      input.disabled = true;
+    } else if (response.responses[index].type === "radio") {
+      const options = question.querySelectorAll(".user-question-radio-input");
+      options.forEach((option) => {
+        if (option.value === response.responses[index].answer) {
+          option.checked = true;
         }
-        else if (response.responses[index].type === "paragraph") {
-            const input = question.querySelector(".user-question-input-textarea");
-            input.value = response.responses[index].answer;
-            input.disabled = true;
-        } else if (response.responses[index].type === "number"){
-            const input = question.querySelector(".user-question-input-number");
-            input.value = response.responses[index].answer;
-            input.disabled = true;
-        } else if (response.responses[index].type === "radio") {
-            const options = question.querySelectorAll(".user-question-radio-input");
-            options.forEach((option) => {
-                if(option.value === response.responses[index].answer) {
-                    option.checked = true;
-                }
-                option.disabled = true;
-            });
-        } else if (response.responses[index].type === "checkbox") {
-            const options = question.querySelectorAll(".user-question-checkbox-input");
-            const answers = response.responses[index].options;
-            options.forEach((option) => {
-                if(answers.includes(option.value)) {
-                    option.checked = true;
-                }
-                option.disabled = true;
-            });
-        } else if (response.responses[index].type === "file") {
-            const input = question.querySelector(".user-question-file-input");
-            // input.files[0] = response.responses[index].answer;
-            input.disabled = true;
+        option.disabled = true;
+      });
+    } else if (response.responses[index].type === "checkbox") {
+      const options = question.querySelectorAll(
+        ".user-question-checkbox-input"
+      );
+      const answers = response.responses[index].options;
+      options.forEach((option) => {
+        if (answers.includes(option.value)) {
+          option.checked = true;
         }
-            
-    });
+        option.disabled = true;
+      });
+    } else if (response.responses[index].type === "file") {
+      const input = question.querySelector(".user-question-file-input");
+      // input.files[0] = response.responses[index].answer;
+      input.disabled = true;
+    }
+  });
 
-    // event listeners
-    showResponseEventListeners();
+  // event listeners
+  showResponseEventListeners();
 }

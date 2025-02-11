@@ -1,6 +1,7 @@
 package com.trustrace.survey.dao;
 
 import com.trustrace.survey.model.Survey;
+import com.trustrace.survey.view.SurveyView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class SurveyDao {
@@ -38,10 +40,11 @@ public class SurveyDao {
         return Optional.ofNullable(survey);
     }
 
-    public List<Survey> getSurveysByUserId(String userId) {
+    public List<SurveyView> getSurveysByUserId(String userId) {
         logger.info("Fetching surveys for user id: {}", userId);
         Query query = new Query(Criteria.where("userId").is(userId));
-        return mongoTemplate.find(query, Survey.class);
+        List<Survey> surveys = mongoTemplate.find(query, Survey.class);
+        return surveys.stream().map(SurveyView::new).collect(Collectors.toList());
     }
 
     public Survey createSurvey(Survey survey) {

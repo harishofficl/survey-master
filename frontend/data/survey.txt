@@ -1,5 +1,5 @@
 {
-    "userId": "user-1",
+    "userId": "admin-1",
     "title": "Employee Satisfaction Survey",
     "description":
       "We value your feedback and would like to know your thoughts on your work environment and job satisfaction. Please take a few minutes to complete this survey and help us improve.",
@@ -46,6 +46,61 @@
         "question": "Which of the following benefits do you use?",
         "type": "checkbox",
         "options": ["Health Insurance", "Retirement Plan", "Paid Time Off"],
+        "required": true
+      },
+      {
+        "id": "6",
+        "question": "Please upload any relevant documents or images.",
+        "type": "file",
+        "maxFileSize": 10,
+        "fileTypes": ["document", "image", "pdf"],
+        "required": false
+      }
+    ]
+}
+
+{
+    "userId": "admin-1",
+    "title": "Product Feedback Survey",
+    "description":
+      "We would like to hear your thoughts on our latest product. Your feedback is important to us and will help us improve our offerings. Please take a few minutes to complete this survey.",
+    "questions": [
+      {
+        "id": "1",
+        "question": "What is your name?",
+        "type": "text",
+        "minLength": 1,
+        "maxLength": 100,
+        "required": true
+      },
+      {
+        "id": "2",
+        "question": "How would you rate the quality of the product?",
+        "type": "radio",
+        "options": ["Excellent", "Good", "Average", "Poor"],
+        "required": true
+      },
+      {
+        "id": "3",
+        "question": "What do you like most about the product?",
+        "type": "paragraph",
+        "minLength": 20,
+        "maxLength": 500,
+        "required": false
+      },
+      {
+        "id": "4",
+        "question": "How many products have you purchased?",
+        "type": "number",
+        "minValue": 0,
+        "maxValue": 100,
+        "required": true
+      },
+      {
+        "id": "5",
+        "question": "Which features do you use the most?",
+        "type": "checkbox",
+        "options": ["Feature A", "Feature B", "Feature C"],
         "required": true
       },
       {

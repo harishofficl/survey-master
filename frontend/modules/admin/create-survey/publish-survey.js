@@ -1,6 +1,18 @@
 import adminDashboardInit from "../../admin/dashboard/dashboard.js";
+import { currentUser } from "../../../data/db.js";
 
-export default function () {
+async function postSurvey(survey) {
+  const api = `http://localhost:8080/api/surveys`;
+  await fetch(api, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(survey),
+  });
+}
+
+export default async function () {
   const title = document.getElementById("survey-title").value;
   const description = document.getElementById("description-input").value;
   const questions = document.querySelectorAll(".question-main-container");
@@ -19,9 +31,9 @@ export default function () {
         id: questionId,
         question: questionText,
         type: questionType,
-        minLength,
-        maxLength,
-        required,
+        minLength: minLength,
+        maxLength: maxLength,
+        required: required,
       });
     } else if (questionType === "number") {
       const validationLengths = question.querySelectorAll(".validation-box");
@@ -32,9 +44,9 @@ export default function () {
         id: questionId,
         question: questionText,
         type: questionType,
-        minRange,
-        maxRange,
-        required,
+        minRange: minRange,
+        maxRange: maxRange,
+        required: required,
       });
     } else if (questionType === "radio" || questionType === "checkbox") {
       const options = question.querySelectorAll(".mcq-option-text");
@@ -48,7 +60,7 @@ export default function () {
         question: questionText,
         type: questionType,
         options: optionArray,
-        required,
+        required: required,
       });
     } else if (questionType === "file") {
       const required = question.querySelector(".required-toggle").checked;
@@ -62,17 +74,21 @@ export default function () {
         id: questionId,
         question: questionText,
         type: questionType,
-        maxFileSize,
-        fileTypes,
-        required,
+        maxFileSize: maxFileSize,
+        fileTypes: fileTypes,
+        required: required,
       });
     }
   });
+
   const survey = {
-    title,
-    description,
+    title: title,
+    description: description,
+    userId: currentUser.id,
     questions: questionArray,
   };
+
+  await postSurvey(survey); // post survey to the server
 
   console.log(survey);
   swal(
@@ -81,5 +97,4 @@ export default function () {
     "success"
   );
   adminDashboardInit();
-  return survey;
 }

@@ -2,6 +2,7 @@ package com.trustrace.survey.service;
 
 import com.trustrace.survey.dao.SurveyDao;
 import com.trustrace.survey.model.Survey;
+import com.trustrace.survey.view.SurveyView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class SurveyService {
         return surveyDao.getSurveyById(id);
     }
 
-    public List<Survey> getSurveysByUserId(String userId) {
+    public List<SurveyView> getSurveysByUserId(String userId) {
         return surveyDao.getSurveysByUserId(userId);
     }
 

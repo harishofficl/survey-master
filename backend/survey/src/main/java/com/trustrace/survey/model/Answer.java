@@ -1,6 +1,7 @@
 package com.trustrace.survey.model;
 
 import lombok.*;
+import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Answer {
-    private String questionId;
+    @Id private String id;
     private String question;
     private String type;
     private String answer;

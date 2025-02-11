@@ -2,6 +2,7 @@ package com.trustrace.survey.controller;
 
 import com.trustrace.survey.model.Survey;
 import com.trustrace.survey.service.SurveyService;
+import com.trustrace.survey.view.SurveyView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +29,7 @@ public class SurveyController {
     }
 
     @GetMapping("/user")
-    public List<Survey> getSurveysByUserId(@RequestParam String userId) {
+    public List<SurveyView> getSurveysByUserId(@RequestParam String userId) {
         return surveyService.getSurveysByUserId(userId);
     }
 

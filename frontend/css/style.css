@@ -236,8 +236,8 @@ li {
   color: #212832;
 }
 
-.hello-user-text{
- margin-top: 2px;
+.hello-user-text {
+  margin-top: 2px;
 }
 
 .nav-bar__user > *:hover {
@@ -1003,3 +1003,10 @@ input:checked + .slider:before {
   font-optical-sizing: auto;
 }
 /* ----------------------------- Fill survey end------------------------------------------ */
+
+.no-responses-text {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #212832;
+}

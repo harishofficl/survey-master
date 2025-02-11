@@ -1,13 +1,30 @@
-import { surveyResponses } from "../../../../data/db.js";
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import listResponsesEventListener from "./event-listeners.js";
 
-export default function (responsesTable, surveyId) {
+async function fetchSurveyResponses(surveyId) {
+  const api = `http://localhost:8080/api/responses/survey?surveyId=${surveyId}`;
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+}
+
+export default async function (responsesTable, surveyId) {
+  const surveyResponsesData = await fetchSurveyResponses(surveyId);
+
   const tableBody = responsesTable.querySelector("tbody");
 
-  const surveyResponsesData = surveyResponses.filter(
-    (response) => response.surveyId === surveyId
-  );
+  if (surveyResponsesData.length === 0) {
+    const noResponsesRow = htmlBuilder([
+      {
+        tag: "p",
+        class: "no-responses-text poppins-normal",
+        text: "No response have been submitted yet.",
+      },
+    ]);
+    tableBody.appendChild(noResponsesRow[0]);
+    return;
+  }
+
   surveyResponsesData.forEach((response, index) => {
     const responseRowObject = htmlBuilder([
       {
@@ -35,7 +52,6 @@ export default function (responsesTable, surveyId) {
     const viewResponseButton = responseRowObject[0].querySelector(
       ".view-response-button"
     );
-    listResponsesEventListener(viewResponseButton, response);
-
+    listResponsesEventListener(viewResponseButton, response.id);
   });
 }

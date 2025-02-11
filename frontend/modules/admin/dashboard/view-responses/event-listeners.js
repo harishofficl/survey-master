@@ -1,8 +1,8 @@
 import showResponse from "./show-response/show-response.js";
 
-export default function (viewResponseButton, response) {
+export default function (viewResponseButton, responseId) {
   viewResponseButton.addEventListener("click", () => {
-    showResponse(response);
+    showResponse(responseId);
   });
 
 }

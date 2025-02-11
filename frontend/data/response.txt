@@ -1,33 +1,33 @@
 {
-    "surveyId": "67aaf097a35514087a74904b",
+    "surveyId": "67ab108d2be25a7b17ec0d60",
     "responderName": "Harish S",
     "responses": [
         {
-            "questionId": "1",
+            "id": "1",
             "question": "What is your name?",
             "type": "text",
             "answer": "Harish S"
         },
         {
-            "questionId": "2",
+            "id": "2",
             "question": "How satisfied are you with your job?",
             "type": "radio",
             "answer": "Satisfied"
         },
         {
-            "questionId": "3",
+            "id": "3",
             "question": "What do you like most about your job?",
             "type": "paragraph",
             "answer": "The collaborative environment and supportive team."
         },
         {
-            "questionId": "4",
+            "id": "4",
             "question": "How many years have you been with the company?",
             "type": "number",
             "answer": 5
         },
         {
-            "questionId": "5",
+            "id": "5",
             "question": "Which of the following benefits do you use?",
             "type": "checkbox",
             "options": [
@@ -36,10 +36,55 @@
             ]
         },
         {
-            "questionId": "6",
+            "id": "6",
             "question": "Please upload any relevant documents or images.",
             "type": "file",
             "answer": "resume.pdf"
         }
+    ]
+}
+
+{
+    "surveyId": "67ab109f2be25a7b17ec0d61",
+    "responderName": "Harish S",
+    "responses": [
+      {
+        "id": "1",
+        "question": "What is your name?",
+        "type": "text",
+        "answer": "Harish S"
+      },
+      {
+        "id": "2",
+        "question": "How would you rate the quality of the product?",
+        "type": "radio",
+        "answer": "Good"
+      },
+      {
+        "id": "3",
+        "question": "What do you like most about the product?",
+        "type": "paragraph",
+        "answer": "The user-friendly interface and robust features."
+      },
+      {
+        "id": "4",
+        "question": "How many products have you purchased?",
+        "type": "number",
+        "answer": 3
+
+      },
+      {
+        "id": "5",
+        "question": "Which features do you use the most?",
+        "type": "checkbox",
+        "options": ["Feature A", "Feature C"]
+
+      },
+      {
+        "id": "6",
+        "question": "Please upload any relevant documents or images.",
+        "type": "file",
+        "answer": "product_image.jpg"
+      }
     ]
 }

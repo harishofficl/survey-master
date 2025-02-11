@@ -1,10 +1,16 @@
-import { surveys } from "../../../data/db.js";
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { fillSurveyEventListener } from "./event-listeners.js";
 import insertSurveyQuestions from "./insert-questions/insert-questions.js";
 
-export default function (surveyId) {
-  const survey = surveys.find((survey) => survey.id === surveyId);
+async function fetchSurvey(surveyId) {
+  const api = `http://localhost:8080/api/surveys/${surveyId}`;
+  const response = await fetch(api);
+  const data = await response.json();
+  return data;
+}
+
+export default async function (surveyId) {
+  const survey = await fetchSurvey(surveyId);
 
   if (!survey) {
     console.error("Survey not found");
