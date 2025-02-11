@@ -40,8 +40,8 @@ const navBarElements = [
         children: [
           {
             tag: "p",
-            class: "logout visually-hidden",
-            text: "Logout",
+            class: "hello-user-text",
+            text: `Hello, ${localStorage.getItem("user")}`,
           },
           {
             tag: "div",

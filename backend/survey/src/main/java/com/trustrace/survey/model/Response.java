@@ -1,17 +1,14 @@
 package com.trustrace.survey.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "responses")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Response {
@@ -19,5 +16,6 @@ public class Response {
     private String id;
     private String surveyId;
     private String responderName;
-    private List<Question> responses;
+    private Date createdAt;
+    private List<Answer> responses;
 }

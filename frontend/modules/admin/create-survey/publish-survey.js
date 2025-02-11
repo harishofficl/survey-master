@@ -1,3 +1,5 @@
+import adminDashboardInit from "../../admin/dashboard/dashboard.js";
+
 export default function () {
   const title = document.getElementById("survey-title").value;
   const description = document.getElementById("description-input").value;
@@ -73,5 +75,11 @@ export default function () {
   };
 
   console.log(survey);
+  swal(
+    "Survey Published",
+    "Your survey has been published successfully!",
+    "success"
+  );
+  adminDashboardInit();
   return survey;
 }

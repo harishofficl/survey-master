@@ -15,6 +15,8 @@ export function fillSurveyEventListener(surveyObject) {
 
     const response = {
       surveyId: surveyObject.id,
+      responderName: localStorage.getItem("user"),
+      createdAt: new Date(),
       responses: Array.from(answers).map((answerContainer, index) => {
         const questionText =
           answerContainer.querySelector(".user-question").textContent;
@@ -65,5 +67,11 @@ export function fillSurveyEventListener(surveyObject) {
       }),
     };
     console.log(response);
+    swal(
+      "Response Submitted",
+      "Your response is submitted successfully...",
+      "success"
+    );
+    dashboardInit();
   });
 }
