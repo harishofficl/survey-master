@@ -1,0 +1,60 @@
+{
+    "userId": "user-1",
+    "title": "Employee Satisfaction Survey",
+    "description":
+      "We value your feedback and would like to know your thoughts on your work environment and job satisfaction. Please take a few minutes to complete this survey and help us improve.",
+    "questions": [
+      {
+        "id": "1",
+        "question": "What is your name?",
+        "type": "text",
+        "minLength": 1,
+        "maxLength": 100,
+        "required": true
+      },
+      {
+        "id": "2",
+        "question": "How satisfied are you with your job?",
+        "type": "radio",
+        "options": [
+          "Very Satisfied",
+          "Satisfied",
+          "Neutral",
+          "Dissatisfied",
+          "Very Dissatisfied"
+        ],
+        "required": true
+      },
+      {
+        "id": "3",
+        "question": "What do you like most about your job?",
+        "type": "paragraph",
+        "minLength": 20,
+        "maxLength": 500,
+        "required": false
+      },
+      {
+        "id": "4",
+        "question": "How many years have you been with the company?",
+        "type": "number",
+        "minValue": 0,
+        "maxValue": 50,
+        "required": true
+      },
+      {
+        "id": "5",
+        "question": "Which of the following benefits do you use?",
+        "type": "checkbox",
+        "options": ["Health Insurance", "Retirement Plan", "Paid Time Off"],
+        "required": true
+      },
+      {
+        "id": "6",
+        "question": "Please upload any relevant documents or images.",
+        "type": "file",
+        "maxFileSize": 10,
+        "fileTypes": ["document", "image", "pdf"],
+        "required": false
+      }
+    ]
+}

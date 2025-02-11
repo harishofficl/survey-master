@@ -17,14 +17,19 @@ public class SurveyController {
     private SurveyService surveyService;
 
     @GetMapping
-    public List<Survey> getAllSurveys() {
-        return surveyService.getAllSurveys();
+    public List<Survey> getAllSurveys(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
+        return surveyService.getAllSurveys(page, size);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Survey> getSurveyById(@PathVariable String id) {
         Optional<Survey> survey = surveyService.getSurveyById(id);
         return ResponseEntity.of(survey);
+    }
+
+    @GetMapping("/user")
+    public List<Survey> getSurveysByUserId(@RequestParam String userId) {
+        return surveyService.getSurveysByUserId(userId);
     }
 
     @PostMapping

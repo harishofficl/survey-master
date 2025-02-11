@@ -14,5 +14,4 @@ public class Answer {
     private String type;
     private String answer;
     private List<String> options;
-    private Date createdAt;
 }

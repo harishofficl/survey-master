@@ -14,12 +14,16 @@ public class SurveyService {
     @Autowired
     private SurveyDao surveyDao;
 
-    public List<Survey> getAllSurveys() {
-        return surveyDao.getAllSurveys();
+    public List<Survey> getAllSurveys(int page, int size) {
+        return surveyDao.getAllSurveys(page, size);
     }
 
     public Optional<Survey> getSurveyById(String id) {
         return surveyDao.getSurveyById(id);
+    }
+
+    public List<Survey> getSurveysByUserId(String userId) {
+        return surveyDao.getSurveysByUserId(userId);
     }
 
     public Survey createSurvey(Survey survey) {

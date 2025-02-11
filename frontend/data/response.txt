@@ -1,0 +1,45 @@
+{
+    "surveyId": "67aaf097a35514087a74904b",
+    "responderName": "Harish S",
+    "responses": [
+        {
+            "questionId": "1",
+            "question": "What is your name?",
+            "type": "text",
+            "answer": "Harish S"
+        },
+        {
+            "questionId": "2",
+            "question": "How satisfied are you with your job?",
+            "type": "radio",
+            "answer": "Satisfied"
+        },
+        {
+            "questionId": "3",
+            "question": "What do you like most about your job?",
+            "type": "paragraph",
+            "answer": "The collaborative environment and supportive team."
+        },
+        {
+            "questionId": "4",
+            "question": "How many years have you been with the company?",
+            "type": "number",
+            "answer": 5
+        },
+        {
+            "questionId": "5",
+            "question": "Which of the following benefits do you use?",
+            "type": "checkbox",
+            "options": [
+                "Health Insurance",
+                "Paid Time Off"
+            ]
+        },
+        {
+            "questionId": "6",
+            "question": "Please upload any relevant documents or images.",
+            "type": "file",
+            "answer": "resume.pdf"
+        }
+    ]
+}
