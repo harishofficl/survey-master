@@ -7,25 +7,26 @@ export default function (email, password) {
     (user) => user.email === email && user.password === password
   );
   if (user) {
-    currentUser = {
-      id: user.id,
-      name: user.name,
-      role: "user",
-    }
+    currentUser.id = user.id;
+    currentUser.name = user.name;
+    currentUser.role = "user";
+
+    swal("Welcome!", "You have successfully logged in!", "success");
     userDashboardInit();
   } else {
     const admin = admins.find(
       (admin) => admin.email === email && admin.password === password
     );
+
     if (admin) {
-      currentUser = {
-        id: admin.id,
-        name: admin.name,
-        role: "admin",
-      }
+      currentUser.id = admin.id;
+      currentUser.name = admin.name;
+      currentUser.role = "admin";
+      swal("Welcome!", "You have successfully logged in!", "success");
       adminDashboardInit();
     } else {
-      alert("Invalid email or password");
+      swal("Login Failed", "Invalid email or password", "error");
+      document.getElementById("password").value = "";
     }
   }
 }

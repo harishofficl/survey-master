@@ -42,7 +42,7 @@ const navBarElements = [
           {
             tag: "p",
             class: "hello-user-text poppins-normal",
-            text: `Hello, ${currentUser.name}`,
+            text: `Hello`,
           },
           {
             tag: "div",
@@ -64,7 +64,9 @@ const navBarElements = [
 ];
 
 export default function () {
+
   const navBar = htmlBuilder(navBarElements)[0];
+  navBar.querySelector(".hello-user-text").textContent = `Hello, ${currentUser.name}`;
   document.getElementById("header").replaceChildren(navBar); // append to `header`
 
   // event listeners

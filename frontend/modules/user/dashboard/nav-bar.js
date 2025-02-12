@@ -41,7 +41,7 @@ const navBarElements = [
           {
             tag: "p",
             class: "hello-user-text",
-            text: `Hello, ${currentUser.name}`, // currentUser is imported from db.js
+            text: `Hello`, // currentUser is imported from db.js
           },
           {
             tag: "div",
@@ -64,6 +64,7 @@ const navBarElements = [
 
 export default function () {
   const navBar = htmlBuilder(navBarElements)[0];
+  navBar.querySelector(".hello-user-text").textContent = `Hello, ${currentUser.name}`;
   document.getElementById("header").replaceChildren(navBar); // append to `header`
 
   // event listeners

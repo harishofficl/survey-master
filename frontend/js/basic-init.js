@@ -19,13 +19,6 @@ const elements = [
           id: "main",
         },
       },
-      {
-        tag: "footer",
-        class: "footer",
-        attributes: {
-          id: "footer",
-        },
-      },
     ],
   },
 ];

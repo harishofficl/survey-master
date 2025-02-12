@@ -1,10 +1,3 @@
-import { createElement } from './js/generator.js';
-import { navBar, login } from './data.js';
-import { surveyListInit } from './js/admin-page/survey-list.js';
-
-export const serverIp = "192.168.100.90";
-
-
 window.addEventListener('load', () => {
     handleRouteChange();
 });
@@ -13,13 +6,11 @@ window.addEventListener('load', () => {
 window.addEventListener('popstate', handleRouteChange);
 
 // Function to navigate to a page by changing the URL and loading the content
- export function navigateTo(page) {
+export function navigateTo(page) {
     history.pushState({ page }, '', `/${page}`);
     handleRouteChange();
 }
 
-
-// Function to handle routing based on URL changes
 function handleRouteChange() {
     const path = window.location.pathname.replace("/", ""); 
 
@@ -30,12 +21,10 @@ function handleRouteChange() {
         "user": lazyUserInit,
         "admin/create-survey": loadCreateSurveyPage,
         "user/survey": () => {
-            const id = new URLSearchParams(window.location.search).get('id');
-            loadSurveyPage(id);
+            loadSurveyPage();
         },
         "admin/survey": () => {
-            const id = new URLSearchParams(window.location.search).get('id');
-            loadAdminSurveyPreview(id);
+            loadAdminSurveyPreview();
         },
     };  
 
@@ -47,33 +36,15 @@ function handleRouteChange() {
     }
 }
 
-// Function to load the login page
-function loadLoginPage() {
-    document.body.innerHTML = '';
-    createElement(navBar, document.body);
-    createElement(login, document.body);
-    updateStylesheet("style.css");
-
-    document.getElementById('admin-button').addEventListener('click', () => {
-        navigateTo("admin");
-    });
-
-    document.getElementById('user-button').addEventListener('click', () => {
-        navigateTo("user");
-    });
-}
-
 // Function to lazy load the admin module
 function lazyAdminInit() {
     document.body.innerHTML = '';
     if (window.adminPageInit) {
         window.adminPageInit();
-        updateStylesheet("css/admin-page/style.css");
     } else {
         import('./js/admin-page/script.js')
             .then(m => {
                 m.adminPageInit();
-                updateStylesheet("css/admin-page/style.css");
             })
             .catch(err => console.error('Failed to load admin page script:', err));
     }
@@ -145,14 +116,3 @@ function loadAdminSurveyPreview(id) {
             .catch(err => console.error('Failed to load create survey script:', err));
     }
 }
-
-
-
-
-
-
-function updateStylesheet(href) {
-    let link = document.querySelector('link[rel="stylesheet"]');
-        link.setAttribute("href", href);
-}
-

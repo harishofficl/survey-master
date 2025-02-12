@@ -28,4 +28,8 @@ export const admins = [
   },
 ];
 
-export let currentUser = null;
+export const currentUser = {
+  id: "",
+  name: "",
+  role: "",
+};

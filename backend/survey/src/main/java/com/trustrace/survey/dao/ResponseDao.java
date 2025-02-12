@@ -1,6 +1,7 @@
 package com.trustrace.survey.dao;
 
 import com.trustrace.survey.model.Response;
+import com.trustrace.survey.model.Survey;
 import com.trustrace.survey.view.ResponseView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,8 @@ public class ResponseDao {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    private SurveyDao surveyDao;
     public List<Response> getAllResponses(int page, int size) {
         logger.info("Fetching responses for page: {} with size: {}", page, size);
         Pageable pageable = PageRequest.of(page, size);
@@ -46,6 +49,12 @@ public class ResponseDao {
     public Response createResponse(Response response) {
         logger.info("Creating new response with id: {}", response.getId());
         response.setCreatedAt(new Date());
+        Optional<Survey> surveyOptional = surveyDao.getSurveyById(response.getSurveyId());
+        if(surveyOptional.isPresent()) {
+            Survey survey = surveyOptional.get();
+            survey.setResponseCount(survey.getResponseCount() + 1);
+            mongoTemplate.save(survey);
+        }
         return mongoTemplate.save(response);
     }
 
