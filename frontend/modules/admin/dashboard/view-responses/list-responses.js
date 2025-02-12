@@ -1,8 +1,9 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import listResponsesEventListener from "./event-listeners.js";
+import { url } from "../../../../data/db.js";
 
 async function fetchSurveyResponses(surveyId) {
-  const api = `http://localhost:8080/api/responses/survey?surveyId=${surveyId}`;
+  const api = `http://${url}/api/responses/survey?surveyId=${surveyId}`;
   const response = await fetch(api);
   const data = await response.json();
   return data;
@@ -32,7 +33,7 @@ export default async function (responsesTable, surveyId) {
         children: [
           { tag: "td", text: index + 1 },
           { tag: "td", text: response.responderName },
-          { tag: "td", text: response.createdAt },
+          { tag: "td", text: response.createdAt.split("T")[0] + " " + response.createdAt.split("T")[1].split(".")[0] },
           {
             tag: "td",
             children: [

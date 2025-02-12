@@ -33,3 +33,6 @@ export const currentUser = {
   name: "",
   role: "",
 };
+
+
+export const url = "localhost:8080";

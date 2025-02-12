@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import surveyCardEventListener from "./survey-card-event-listener.js";
-import { currentUser } from "../../../../data/db.js";
+import { currentUser, url } from "../../../../data/db.js";
 
 // sample domStructure
 /*
@@ -33,7 +33,7 @@ import { currentUser } from "../../../../data/db.js";
 */
 // fetch surveys from db
 async function fetchSurveyCards(userId) {
-  const api = `http://localhost:8080/api/surveys/user?userId=${userId}`;
+  const api = `http://${url}/api/surveys/user?userId=${userId}`;
   const response = await fetch(api);
   const data = await response.json();
   return data;

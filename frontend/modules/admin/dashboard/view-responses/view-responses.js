@@ -46,6 +46,31 @@ const domJson = [
                   {
                     tag: "tbody",
                   },
+                  {
+                    tag: "tfoot",
+                    children: [
+                      {
+                        tag: "tr",
+                        children: [
+                          {
+                            tag: "td",
+                            colspan: "4",
+                            children: [
+                              {
+                                tag: "div",
+                                class: "pagination",
+                                children: [
+                                  { tag: "button", class: "prev-page", text: "Previous" },
+                                  { tag: "span", class: "page-info", text: "Page 1 of 10" },
+                                  { tag: "button", class: "next-page", text: "Next" },
+                                ],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
                 ],
               },
             ],
@@ -63,4 +88,13 @@ export default function (surveyId) {
   // Add event listener to view response button
   const responsesTable = document.querySelector(".responses-table");
   listResponses(responsesTable, surveyId);
+
+  // Add event listeners for pagination buttons
+  document.querySelector(".prev-page").addEventListener("click", () => {
+    // Handle previous page click
+  });
+
+  document.querySelector(".next-page").addEventListener("click", () => {
+    // Handle next page click
+  });
 }

@@ -2,7 +2,6 @@ import htmlBuilder from "../../../utils/htmlBuilder.js";
 import navBar from "./nav-bar.js";
 import buildSurveyCards from "./create-survey-card/survey-cards.js";
 import { dashboardEventListener } from "./event-listeners.js";
-import { currentUser } from "../../../data/db.js";
 
 const domJson = [
   {

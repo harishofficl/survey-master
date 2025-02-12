@@ -24,6 +24,9 @@ export default function htmlBuilder(elements, parent) {
             tagObject.setAttribute(attrKey, attrValue);
           });
           break;
+        case "colspan":
+          tagObject.colSpan = value;
+          break;
         case "children":
           htmlBuilder(value, tagObject);
           break;

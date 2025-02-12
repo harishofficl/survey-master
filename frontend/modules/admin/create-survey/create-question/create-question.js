@@ -225,6 +225,10 @@ export default function (prevQuesObject) {
     // add questionObject after header-container
     const surveyContainer = document.querySelector(".survey-container");
     const headerContainer = surveyContainer.querySelector(".header-container");
+    
+    const deleteIcon = questionObject.querySelector(".delete-question-icon");
+    deleteIcon.remove();
+
     surveyContainer.insertBefore(questionObject, headerContainer.nextSibling);
 
   } else {
