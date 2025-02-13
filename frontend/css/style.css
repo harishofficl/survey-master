@@ -34,6 +34,15 @@ li {
   all: unset;
 }
 
+.italic {
+  font-style: italic;
+}
+
+.red-text {
+  color: red;
+  text-align: end;
+}
+
 .open-sans-regular {
   font-family: "Open Sans", serif;
   font-weight: 500;
@@ -1043,4 +1052,14 @@ input:checked + .slider:before {
   font-weight: 500;
   font-size: 14px;
   color: #212832;
+}
+
+/* ----------------------------- Pagination end------------------------------------------ */
+
+/* ----------------------------- Error Message ------------------------------------------ */
+
+.red-text {
+  color: red;
+  text-align: end;
+  font-size: 13px;
 }

@@ -1,0 +1,6 @@
+--------------------------------------------------✔️---❌---------------------------------------------
+validations
+pagination
+html5 routing
+api try-catch handling
+date time format to IST

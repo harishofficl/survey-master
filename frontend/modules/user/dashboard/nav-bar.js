@@ -41,7 +41,6 @@ const navBarElements = [
           {
             tag: "p",
             class: "hello-user-text",
-            text: `Hello, ${currentUserStore.getState().name}`, // currentUserStore
           },
           {
             tag: "div",
@@ -65,6 +64,8 @@ const navBarElements = [
 export default function () {
   const navBar = htmlBuilder(navBarElements)[0];
   document.getElementById("header").replaceChildren(navBar); // append to `header`
+  const helloUserText = navBar.querySelector(".hello-user-text");
+  helloUserText.textContent = `Hello, ${currentUserStore.getState().name}`;
 
   // event listeners
   navBarEventListener(navBar);

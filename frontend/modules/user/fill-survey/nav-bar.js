@@ -1,5 +1,6 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { navBarEventListener } from "./event-listeners.js";
+import { currentUserStore } from "../../../data/store.js";
 
 const navBarElements = [
   {
@@ -40,8 +41,7 @@ const navBarElements = [
         children: [
           {
             tag: "p",
-            class: "logout visually-hidden",
-            text: "Logout",
+            class: "hello-user-text poppins-normal",
           },
           {
             tag: "div",
@@ -65,6 +65,9 @@ const navBarElements = [
 export default function () {
   const navBar = htmlBuilder(navBarElements)[0];
   document.getElementById("header").replaceChildren(navBar); // append to `header`
+  const helloUserText = navBar.querySelector(".hello-user-text");
+  helloUserText.textContent = `Hello, ${currentUserStore.getState().name}`;
+
 
   // event listeners
   navBarEventListener(navBar);

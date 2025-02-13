@@ -25,7 +25,9 @@ export default function (questionObject) {
   const deleteQuestionIcon = questionObject.querySelector(
     ".delete-question-icon"
   );
-  deleteQuestionIcon.addEventListener("click", () => {
-    questionObject.remove();
-  });
+  if (deleteQuestionIcon) {
+    deleteQuestionIcon.addEventListener("click", () => {
+      questionObject.remove();
+    });
+  }
 }
