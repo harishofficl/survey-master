@@ -1,10 +1,13 @@
 export default function (question, type, questionNumber) {
-  const questionText = `${questionNumber}. ${question.question}`;
+  const questionText = `${questionNumber}. ${question.question}${question.required ? "*" : ""}`;
 
   if (type === "text") {
     return {
       tag: "div",
       class: "question-main-container white-bg border poppins-normal",
+      attributes: {
+        id: questionNumber,
+      },
       children: [
         {
           tag: "div",
@@ -36,6 +39,9 @@ export default function (question, type, questionNumber) {
     return {
       tag: "div",
       class: "question-main-container white-bg border poppins-normal",
+      attributes: {
+        id: questionNumber,
+      },
       children: [
         {
           tag: "div",
@@ -63,7 +69,10 @@ export default function (question, type, questionNumber) {
   } else if (type === "number") {
     return {
       tag: "div",
-      class: "question-main-container white-bg border",
+      class: "question-main-container white-bg border poppins-normal",
+      attributes: {
+        id: questionNumber,
+      },
       children: [
         {
           tag: "div",
@@ -118,6 +127,9 @@ export default function (question, type, questionNumber) {
     return {
       tag: "div",
       class: "question-main-container white-bg border poppins-normal",
+      attributes: {
+        id: questionNumber,
+      },
       children: [
         {
           tag: "div",
@@ -163,6 +175,9 @@ export default function (question, type, questionNumber) {
     return {
       tag: "div",
       class: "question-main-container white-bg border poppins-normal",
+      attributes: {
+        id: questionNumber,
+      },
       children: [
         {
           tag: "div",
@@ -186,6 +201,9 @@ export default function (question, type, questionNumber) {
     return {
       tag: "div",
       class: "question-main-container white-bg border poppins-normal",
+      attributes: {
+        id: questionNumber,
+      },
       children: [
         {
           tag: "div",

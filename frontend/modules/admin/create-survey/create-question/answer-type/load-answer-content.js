@@ -9,6 +9,13 @@ import {
   fileDom,
 } from "./json-data.js";
 
+import {
+  validateKeyPress,
+  pasteValidation,
+  requiredValidation,
+  validateCharacters,
+} from "../../../../../validations/validations.js";
+
 export default function loadAnswerTypeContent(
   questionObject,
   answerTypeObject
@@ -54,12 +61,18 @@ export default function loadAnswerTypeContent(
         createNewOption(answerTypeContentObject, type)
       );
 
-      // add event listeners for mcq and radio type remove option button
-      const deleteOptionObject = answerTypeContentObject.querySelector(".delete-icon");
-      deleteOptionObject.addEventListener("click", () => {
-        deleteOptionObject.parentElement.remove();
+      // add event listeners for mcq and radio type option textbox
+      const optionInput = answerTypeContentObject.querySelector(".mcq-option-text");
+      optionInput.addEventListener("keypress", (event) =>
+        validateKeyPress(event, 100, "10,13,32-126")
+      );
+      optionInput.addEventListener("paste", (event) =>
+        pasteValidation(event, 100)
+      );
+      optionInput.addEventListener("blur", (event) => {
+        validateCharacters(event, "10,13,32-126");
+        requiredValidation(event);
       });
-      
     }
   }
 }

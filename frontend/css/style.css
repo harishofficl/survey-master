@@ -38,11 +38,6 @@ li {
   font-style: italic;
 }
 
-.red-text {
-  color: red;
-  text-align: end;
-}
-
 .open-sans-regular {
   font-family: "Open Sans", serif;
   font-weight: 500;
@@ -326,7 +321,7 @@ li {
 
 .question-text {
   all: unset;
-  width: 90%;
+  width: 98%;
   border-bottom: 1px solid rgb(126, 126, 126);
   padding: 0 5px;
   resize: none;
@@ -392,11 +387,13 @@ li {
 
 .question-container {
   display: flex;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
 .question {
-  flex: 0.95;
+  flex: 1;
+  width: 100%;
   font-size: 14px;
   color: #212832;
 }
@@ -1060,6 +1057,6 @@ input:checked + .slider:before {
 
 .red-text {
   color: red;
-  text-align: end;
+  text-align: right;
   font-size: 13px;
 }

@@ -1,7 +1,8 @@
 import { appendErrorMessage } from "./span-error.js";
 
 /* 1. keypress validation */
-export function validateKeyPress(event, maxLength, allowedChars) { // allowedChars = "64-91,96-123,47-58,95"
+export function validateKeyPress(event, maxLength, allowedChars) {
+  // allowedChars = "64-91,96-123,47-58,95"
   const tag = event.target;
   const charCode = event.keyCode;
 
@@ -28,6 +29,19 @@ export function validateKeyPress(event, maxLength, allowedChars) { // allowedCha
 export function pasteValidation(event, maxLength) {
   if (event.clipboardData.getData("text").length > maxLength) {
     event.preventDefault();
+
+    const tag = event.target;
+    let span = tag.nextElementSibling;
+    if (!span || !span.classList.contains("validation-error")) {
+      span = appendErrorMessage(tag, `Max ${maxLength} characters allowed`);
+    } else {
+      span.textContent = `Max ${maxLength} characters allowed`;
+    }
+    setTimeout(() => {
+      if (span && span.classList.contains("validation-error")) {
+        span.remove();
+      }
+    }, 2000);
   }
 }
 
@@ -56,15 +70,12 @@ export function validateCharacters(event, allowedChars, minLength = 0) {
   const textValue = tag.value;
   let span = tag.nextElementSibling;
 
-  if (textValue.length < minLength) {
-    event.preventDefault();
+  if (textValue.length > 0 && textValue.length < minLength) {
     if (!span || !span.classList.contains("validation-error")) {
       span = appendErrorMessage(
         tag,
         `Minimum ${minLength} characters required`
       );
-    } else if (span.textContent === "* required field") {
-      span.textContent = `Minimum ${minLength} characters required`;
     } else {
       span.textContent = `Minimum ${minLength} characters required`;
     }
@@ -90,12 +101,10 @@ export function validateCharacters(event, allowedChars, minLength = 0) {
   const invalidChar = [...textValue].find(
     (char) => !isAllowed(char.charCodeAt(0))
   );
-
   if (invalidChar) {
-    event.preventDefault();
     if (!span || !span.classList.contains("validation-error")) {
       span = appendErrorMessage(tag, `Invalid character: ${invalidChar}`);
-    } else if (span.textContent === "* required field") {
+    } else {
       span.textContent = `Invalid character: ${invalidChar}`;
     }
   } else {

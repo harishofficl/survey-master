@@ -34,8 +34,10 @@ export default async function (email, password) {
         }
       );
     } else {
-      swal("Login Failed", "Invalid email or password", "error");
-      document.getElementById("password").value = "";
+      swal("Login Failed", "Invalid email or password", "error").then(() => {
+        document.getElementById("password").value = "";
+        document.getElementById("password").focus();
+      });
     }
   }
 }

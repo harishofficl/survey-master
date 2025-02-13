@@ -1,4 +1,6 @@
-import insertQuestionsEventListeners from "./event-listeners.js";
+import {
+  eachQuesValidation,
+} from "./event-listeners.js";
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import buildQuestionContainer from "./build-question/build-question.js";
 
@@ -26,8 +28,6 @@ export default function (surveyForm, ListQuestions) {
   // insert questions into the survey form after header container
   questions.forEach((question) => {
     formBodyContainer.appendChild(question);
+    eachQuesValidation(question, ListQuestions[question.id - 1]); // event listeners for each question
   });
-
-  // add event listeners to the questions
-  insertQuestionsEventListeners(surveyForm);
 }

@@ -4,3 +4,4 @@ pagination
 html5 routing
 api try-catch handling
 date time format to IST
+ensure all labels have hover pointer as cursor

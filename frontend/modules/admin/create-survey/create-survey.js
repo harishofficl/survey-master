@@ -33,7 +33,7 @@ const domJson = [
                 class: "survey-title text-box",
                 attributes: {
                   type: "text",
-                  placeholder: "Survey Title",
+                  placeholder: "Survey Title*",
                   id: "survey-title",
                 },
               },

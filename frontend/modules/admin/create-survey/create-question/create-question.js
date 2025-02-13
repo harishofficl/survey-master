@@ -18,7 +18,7 @@ const domJson = [
                 tag: "textarea",
                 class: "question-text",
                 attributes: {
-                  placeholder: "Enter your question here",
+                  placeholder: "Enter your question here*",
                 },
               },
             ],

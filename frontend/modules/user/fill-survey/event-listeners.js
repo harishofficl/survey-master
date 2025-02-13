@@ -14,14 +14,20 @@ async function postResponse(response) {
 }
 
 export function navBarEventListener(navBarObject) {
-  navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => dashboardInit());
+  navBarObject
+    .querySelector(".nav-bar__logo")
+    .addEventListener("click", () => dashboardInit());
 }
 
 export async function fillSurveyEventListener(surveyObject) {
-
   const submitButton = surveyObject.querySelector(".submit-user-response-btn");
 
   submitButton.addEventListener("click", function () {
+
+    // trigger event listeners for file input
+    //....
+
+
     // Build response object
     const answers = surveyObject.querySelectorAll(
       ".fill-survey-form-body .question-main-container"
@@ -87,7 +93,6 @@ export async function fillSurveyEventListener(surveyObject) {
       "Response Submitted",
       "Your response is submitted successfully...",
       "success"
-    );
-    dashboardInit();
+    ).then(() => dashboardInit());
   });
 }

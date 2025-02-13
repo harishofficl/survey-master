@@ -5,9 +5,9 @@ import htmlBuilder from "../utils/htmlBuilder.js";
 export function appendErrorMessage(tag, errorMessage) {
   const spanJson = [
     {
-      tag: "span",
+      tag: "div",
       class: "red-text poppins-text validation-error",
-      text: `${errorMessage || "* required field"}`, // default message
+      text: `${errorMessage || "* required field"}`,
     },
   ];
 
