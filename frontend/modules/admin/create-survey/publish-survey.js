@@ -1,5 +1,5 @@
 import adminDashboardInit from "../../admin/dashboard/dashboard.js";
-import { currentUser } from "../../../data/db.js";
+import { currentUserStore } from "../../../data/store.js";
 
 async function postSurvey(survey) {
   const api = `http://localhost:8080/api/surveys`;
@@ -84,17 +84,17 @@ export default async function () {
   const survey = {
     title: title,
     description: description,
-    userId: currentUser.id,
+    userId: currentUserStore.getState().id,
     questions: questionArray,
   };
 
   await postSurvey(survey); // post survey to the server
 
-  console.log(survey);
   swal(
     "Survey Published",
     "Your survey has been published successfully!",
     "success"
-  );
-  adminDashboardInit();
+  ).then(() => {
+    adminDashboardInit();
+  });
 }

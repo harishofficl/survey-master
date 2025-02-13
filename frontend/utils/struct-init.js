@@ -1,4 +1,4 @@
-import htmlBuilder from "../utils/htmlBuilder.js";
+import htmlBuilder from "./htmlBuilder.js";
 
 const elements = [
   {
@@ -23,8 +23,10 @@ const elements = [
   },
 ];
 
-const domObjects = htmlBuilder(elements);
+export default async function () {
+  const domObjects = htmlBuilder(elements);
 
-for (const domObject of domObjects) {
-  document.body.appendChild(domObject);
+  for (const domObject of domObjects) {
+    document.body.appendChild(domObject);
+  }
 }

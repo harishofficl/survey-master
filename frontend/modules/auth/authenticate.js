@@ -1,4 +1,4 @@
-import { users, admins, currentUser } from "../../data/db.js";
+import { users, admins, currentUserStore } from "../../data/store.js";
 import adminDashboardInit from "../admin/dashboard/dashboard.js";
 import userDashboardInit from "../user/dashboard/dashboard.js";
 
@@ -7,23 +7,37 @@ export default function (email, password) {
     (user) => user.email === email && user.password === password
   );
   if (user) {
-    currentUser.id = user.id;
-    currentUser.name = user.name;
-    currentUser.role = "user";
+    currentUserStore.subscribe(userDashboardInit);
 
-    swal("Welcome!", "You have successfully logged in!", "success");
-    userDashboardInit();
+    swal("Welcome!", "You have successfully logged in!", "success").then(() => {
+      userDashboardInit();
+    });
+
+    currentUserStore.setState({
+      id: user.id,
+      name: user.name,
+      role: "user",
+    });
+    
   } else {
     const admin = admins.find(
       (admin) => admin.email === email && admin.password === password
     );
 
     if (admin) {
-      currentUser.id = admin.id;
-      currentUser.name = admin.name;
-      currentUser.role = "admin";
-      swal("Welcome!", "You have successfully logged in!", "success");
-      adminDashboardInit();
+      currentUserStore.subscribe(adminDashboardInit);
+
+      swal("Welcome!", "You have successfully logged in!", "success").then(
+        () => {
+          adminDashboardInit();
+        }
+      );
+
+      currentUserStore.setState({
+        id: admin.id,
+        name: admin.name,
+        role: "admin",
+      });
     } else {
       swal("Login Failed", "Invalid email or password", "error");
       document.getElementById("password").value = "";

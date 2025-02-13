@@ -22,7 +22,7 @@ export function loginEventListener(){
     const loginUserName = document.getElementById("email");
     console.log(loginUserName);
     loginUserName.addEventListener("keypress", usernameValidation);
-    loginUserName.addEventListener("paste", pasteValidation, 20);
+    loginUserName.addEventListener('paste', (event) => pasteValidation(event, 20));
     loginUserName.addEventListener("blur", notEmptyValidation);
 
 }

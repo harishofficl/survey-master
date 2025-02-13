@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { navBarEventListener } from "./event-listeners.js";
-import { currentUser } from "../../../data/db.js";
+import { currentUserStore } from "../../../data/store.js";
 const navBarElements = [
   {
     tag: "div",
@@ -41,7 +41,7 @@ const navBarElements = [
           {
             tag: "p",
             class: "hello-user-text",
-            text: `Hello`, // currentUser is imported from db.js
+            text: `Hello, ${currentUserStore.getState().name}`, // currentUserStore
           },
           {
             tag: "div",
@@ -64,7 +64,6 @@ const navBarElements = [
 
 export default function () {
   const navBar = htmlBuilder(navBarElements)[0];
-  navBar.querySelector(".hello-user-text").textContent = `Hello, ${currentUser.name}`;
   document.getElementById("header").replaceChildren(navBar); // append to `header`
 
   // event listeners

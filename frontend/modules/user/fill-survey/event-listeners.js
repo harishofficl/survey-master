@@ -1,5 +1,5 @@
 import dashboardInit from "../dashboard/dashboard.js";
-import { currentUser } from "../../../data/db.js";
+import { currentUserStore } from "../../../data/store.js";
 
 // post response to the server
 async function postResponse(response) {
@@ -29,7 +29,7 @@ export async function fillSurveyEventListener(surveyObject) {
 
     const response = {
       surveyId: surveyObject.getAttribute("id"),
-      responderName: currentUser.name,
+      responderName: currentUserStore.getState().name,
       responses: Array.from(answers).map((answerContainer, index) => {
         const questionText =
           answerContainer.querySelector(".user-question").textContent;

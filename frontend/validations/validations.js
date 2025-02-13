@@ -6,14 +6,15 @@ specs:
     username should not start with a number
 */
 export function usernameValidation(event) {
+  const tag = event.target;
   const charCode = event.keyCode;
 
-  if (textBox4.value.length >= 20) {
+  if (tag.value.length >= 20) {
     event.preventDefault();
     return;
   }
 
-  if (textBox4.value.length === 0 && charCode > 47 && charCode < 58) {
+  if (tag.value.length === 0 && charCode > 47 && charCode < 58) {
     event.preventDefault();
     return;
   }

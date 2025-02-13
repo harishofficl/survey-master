@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import surveyCardEventListener from "./survey-card-event-listener.js";
-import { currentUser, url } from "../../../../data/db.js";
+import { currentUserStore, url } from "../../../../data/store.js";
 
 // sample domStructure
 /*
@@ -41,7 +41,7 @@ async function fetchSurveyCards(userId) {
 
 // function to create survey card
 export default async function (dashboardBody) {
-  const surveys =  await fetchSurveyCards(currentUser.id);
+  const surveys =  await fetchSurveyCards(currentUserStore.getState().id);
   const surveyCards = surveys.map((survey) => {
     return {
       tag: "div",

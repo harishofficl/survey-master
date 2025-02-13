@@ -1,6 +1,6 @@
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import listResponsesEventListener from "./event-listeners.js";
-import { url } from "../../../../data/db.js";
+import { url } from "../../../../data/store.js";
 
 async function fetchSurveyResponses(surveyId) {
   const api = `http://${url}/api/responses/survey?surveyId=${surveyId}`;
