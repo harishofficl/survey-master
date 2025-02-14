@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/surveys")
+@RequestMapping("${survey.build.version}/api/surveys")
 public class SurveyController {
 
     @Autowired
     private SurveyService surveyService;
 
     @GetMapping
-    public List<Survey> getAllSurveys(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
+    public List<Survey> getAllSurveys(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "9") int size) {
         return surveyService.getAllSurveys(page, size);
     }
 

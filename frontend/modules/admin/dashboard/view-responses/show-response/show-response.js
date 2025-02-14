@@ -1,8 +1,10 @@
+import { url } from "../../../../../data/store.js";
+import htmlBuilder from "../../../../../utils/htmlBuilder.js";
 import fillSurvey from "../../../../user/fill-survey/fill-survey.js";
 import showResponseEventListeners from "./event-listeners.js";
 
 async function fetchResponse(responseId) {
-  const api = `http://localhost:8080/api/responses/${responseId}`;
+  const api = `http://${url}/api/responses/${responseId}`;
   const response = await fetch(api);
   const data = await response.json();
   return data;
@@ -67,8 +69,20 @@ export default async function (responseId) {
       const inputTypes = question.querySelector(".user-question-file-allowed");
       input.remove();
       inputTypes.remove();
-      const answer = document.createElement("p");
-      answer.textContent = response.responses[index].answer;
+
+      
+      const answer = htmlBuilder([
+        {
+          tag: "p",
+          class: "user-question-file-answer-text",
+        }
+      ])[0];
+
+      if(response.responses[index].answer.length === 0) {
+        answer.textContent = "No file uploaded";
+      } else {
+        answer.textContent = response.responses[index].answer;
+      }
       question.querySelector(".user-answer-container").appendChild(answer);
     }
   });

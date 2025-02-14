@@ -1,13 +1,22 @@
+import { url } from "../../../../data/store.js";
 import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import surveyCardEventListener from "./event-listeners.js";
 
 async function fetchSurveys(page, size) {
   if (!page) page = 0;
-  if (!size) size = 6;
-  const api = `http://localhost:8080/api/surveys?page=${page}&size=${size}`;
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
+  if (!size) size = 9;
+  const api = `http://${url}/api/surveys?page=${page}&size=${size}`;
+  try {
+    const response = await fetch(api);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    swal("Error", "Something went wrong while fetching surveys!", "error");
+    return [];
+  }
 }
 
 

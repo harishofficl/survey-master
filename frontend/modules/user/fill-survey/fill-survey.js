@@ -1,21 +1,26 @@
+import { url } from "../../../data/store.js";
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { fillSurveyEventListener } from "./event-listeners.js";
 import insertSurveyQuestions from "./insert-questions/insert-questions.js";
 
 async function fetchSurvey(surveyId) {
-  const api = `http://localhost:8080/api/surveys/${surveyId}`;
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
+  const api = `http://${url}/api/surveys/${surveyId}`;
+  try {
+    const response = await fetch(api);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    swal("Error", "Something went wrong while fetching the survey!", "error");
+    return null;
+  }
 }
 
 export default async function (surveyId) {
   const survey = await fetchSurvey(surveyId);
-
-  if (!survey) {
-    console.error("Survey not found");
-    return;
-  }
+  if(!survey) return;
   
   const domJson = [
     {

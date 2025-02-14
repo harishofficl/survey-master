@@ -55,14 +55,25 @@ const domJson = [
                           {
                             tag: "td",
                             colspan: "4",
+                            attributes: {
+                              id: "pagination-handle-button-container",
+                            },
                             children: [
                               {
                                 tag: "div",
-                                class: "pagination",
+                                class: "pagination-handle-buttons",
                                 children: [
-                                  { tag: "button", class: "prev-page", text: "Previous" },
-                                  { tag: "span", class: "page-info", text: "Page 1 of 10" },
-                                  { tag: "button", class: "next-page", text: "Next" },
+                                  {
+                                    tag: "button",
+                                    class: "prev-page",
+                                    text: "Previous",
+                                  },
+                                  { tag: "span", class: "page-info" },
+                                  {
+                                    tag: "button",
+                                    class: "next-page",
+                                    text: "Next",
+                                  },
                                 ],
                               },
                             ],
@@ -81,20 +92,45 @@ const domJson = [
   },
 ];
 
-export default function (surveyId) {
+export default function (surveyId, totalResponseCount) {
   const responses = htmlBuilder(domJson)[0];
   document.getElementById("main").replaceChildren(responses);
 
-  // Add event listener to view response button
-  const responsesTable = document.querySelector(".responses-table");
-  listResponses(responsesTable, surveyId);
+  const responsesTable = responses.querySelector(".responses-table");
 
-  // Add event listeners for pagination buttons
-  document.querySelector(".prev-page").addEventListener("click", () => {
-    // Handle previous page click
-  });
+  const totalPages = Math.ceil(totalResponseCount / 2); // 2 responses per page
 
-  document.querySelector(".next-page").addEventListener("click", () => {
-    // Handle next page click
-  });
+  const paginationHandleButtonContainer = document.getElementById(
+    "pagination-handle-button-container"
+  );
+
+  let page = 0;
+  const pageElement =
+    paginationHandleButtonContainer.querySelector(".page-info");
+  pageElement.textContent = `Page ${page + 1} of ${totalPages}`;
+
+  const updatePage = (newPage) => {
+    page = newPage;
+    pageElement.textContent = `Page ${page + 1} of ${totalPages}`;
+    listResponses(responsesTable, surveyId, page);
+  };
+
+  paginationHandleButtonContainer
+    .querySelector(".prev-page")
+    .addEventListener("click", () => {
+      if (page > 0) {
+        updatePage(page - 1);
+      }
+    });
+
+  paginationHandleButtonContainer
+    .querySelector(".next-page")
+    .addEventListener("click", () => {
+      if (page < totalPages - 1) {
+        updatePage(page + 1);
+      }
+    });
+
+  // call this module to update response content
+  listResponses(responsesTable, surveyId, page); // list responses
 }

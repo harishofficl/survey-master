@@ -1,8 +1,8 @@
 import adminDashboardInit from "../../admin/dashboard/dashboard.js";
-import { currentUserStore } from "../../../data/store.js";
+import { currentUserStore, url } from "../../../data/store.js";
 
 async function postSurvey(survey) {
-  const api = `http://localhost:8080/api/surveys`;
+  const api = `http://${url}/api/surveys`;
   await fetch(api, {
     method: "POST",
     headers: {

@@ -1026,7 +1026,7 @@ input:checked + .slider:before {
 
 /* pagination footer */
 
-.pagination {
+.pagination-handle-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1034,7 +1034,7 @@ input:checked + .slider:before {
   padding: 10px 0;
 }
 
-.pagination button {
+.pagination-handle-buttons button {
   padding: 5px 10px;
   border: none;
   border-radius: 4px;
@@ -1047,18 +1047,21 @@ input:checked + .slider:before {
   transition: background-color 0.3s;
 }
 
-.pagination button:hover {
+.pagination-handle-buttons button:hover {
   background-color: #5b708a;
 }
 
-.pagination .page-info {
+.pagination-handle-buttons .page-info {
   font-family: "Poppins", serif;
   font-weight: 500;
   font-size: 14px;
   color: #212832;
 }
 
-/* ----------------------------- Pagination end------------------------------------------ */
+.user-question-file-answer-text {
+  font-size: 14px;
+  color: #212832;
+}
 
 /* ----------------------------- Error Message ------------------------------------------ */
 

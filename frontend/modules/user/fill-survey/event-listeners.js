@@ -1,17 +1,25 @@
 import dashboardInit from "../dashboard/dashboard.js";
-import { currentUserStore } from "../../../data/store.js";
+import { currentUserStore, url } from "../../../data/store.js";
 import { requiredValidation } from "../../../validations/validations.js";
 
 // post response to the server
 async function postResponse(response) {
-  const api = `http://localhost:8080/api/responses`;
-  await fetch(api, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(response),
-  });
+  const api = `http://${url}/api/responses`;
+  try {
+    const res = await fetch(api, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(response),
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+  } catch (error) {
+    swal("Error", "Something went wrong while submitting your response!", "error");
+    throw error;
+  }
 }
 
 export function navBarEventListener(navBarObject) {
@@ -61,6 +69,7 @@ export async function fillSurveyEventListener(surveyObject, questionsJson) {
         }
       }
     });
+    
     // If there is any validation error, prevent form submission
     if (surveyObject.querySelector(".validation-error")) return;
     

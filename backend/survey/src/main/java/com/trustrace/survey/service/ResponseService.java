@@ -23,8 +23,8 @@ public class ResponseService {
         return responseDao.getResponseById(id);
     }
 
-    public List<ResponseView> getResponsesBySurveyId(String surveyId) {
-        return responseDao.getResponsesBySurveyId(surveyId);
+    public List<ResponseView> getResponsesBySurveyId(String surveyId, int page, int size) {
+        return responseDao.getResponsesBySurveyId(surveyId, page, size);
     }
 
     public Response createResponse(Response response) {

@@ -40,9 +40,10 @@ public class ResponseDao {
         return Optional.ofNullable(response);
     }
 
-    public List<ResponseView> getResponsesBySurveyId(String surveyId) {
-        logger.info("Fetching responses for survey id: {}", surveyId);
-        Query query = new Query(Criteria.where("surveyId").is(surveyId));
+    public List<ResponseView> getResponsesBySurveyId(String surveyId, int page, int size) {
+        logger.info("Fetching responses for survey id: {} with page: {} and size: {}", surveyId, page, size);
+        Pageable pageable = PageRequest.of(page, size);
+        Query query = new Query(Criteria.where("surveyId").is(surveyId)).with(pageable);
         return mongoTemplate.find(query, Response.class).stream().map(ResponseView::new).toList();
     }
 

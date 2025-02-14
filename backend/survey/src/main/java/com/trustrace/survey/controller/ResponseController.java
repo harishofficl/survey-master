@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/responses")
+@RequestMapping("${survey.build.version}/api/responses")
 public class ResponseController {
 
     @Autowired
@@ -29,8 +29,8 @@ public class ResponseController {
     }
 
     @GetMapping("/survey")
-    public List<ResponseView> getResponsesBySurveyId(@RequestParam String surveyId) {
-        return responseService.getResponsesBySurveyId(surveyId);
+    public List<ResponseView> getResponsesBySurveyId(@RequestParam String surveyId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        return responseService.getResponsesBySurveyId(surveyId, page, size);
     }
 
     @PostMapping

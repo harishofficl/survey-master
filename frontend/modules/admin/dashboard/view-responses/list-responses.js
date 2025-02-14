@@ -2,15 +2,17 @@ import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import listResponsesEventListener from "./event-listeners.js";
 import { url } from "../../../../data/store.js";
 
-async function fetchSurveyResponses(surveyId) {
-  const api = `http://${url}/api/responses/survey?surveyId=${surveyId}`;
+async function fetchSurveyResponses(surveyId, page, size) {
+  if(!page) page = 0;
+  if(!size) size = 2; // default size
+  const api = `http://${url}/api/responses/survey?surveyId=${surveyId}&page=${page}&size=${size}`;
   const response = await fetch(api);
   const data = await response.json();
   return data;
 }
 
-export default async function (responsesTable, surveyId) {
-  const surveyResponsesData = await fetchSurveyResponses(surveyId);
+export default async function (responsesTable, surveyId, page) {
+  const surveyResponsesData = await fetchSurveyResponses(surveyId, page);
 
   const tableBody = responsesTable.querySelector("tbody");
 
@@ -23,9 +25,11 @@ export default async function (responsesTable, surveyId) {
       },
     ]);
     tableBody.appendChild(noResponsesRow[0]);
+    document.getElementById("pagination-handle-button-container").remove();
     return;
   }
 
+  tableBody.innerHTML = "";
   surveyResponsesData.forEach((response, index) => {
     const responseRowObject = htmlBuilder([
       {

@@ -58,8 +58,6 @@ function handleRouteChange() {
     routes[path] || routes[window.location.pathname.replace("/", "")];
   if (routeAction) {
     routeAction();
-  } else {
-    console.error("No route found for path:", path);
   }
 }
 
