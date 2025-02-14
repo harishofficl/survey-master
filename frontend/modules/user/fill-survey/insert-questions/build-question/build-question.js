@@ -214,6 +214,11 @@ export default function (question, type, questionNumber) {
               class: "user-question",
               text: questionText,
             },
+            {
+              tag: "p",
+              class: "user-question user-question-file-allowed poppins-text",
+              text: `Only ${question.fileTypes.join(", ")} - allowed`,
+            }
           ],
         },
         {

@@ -3,9 +3,13 @@ import {
   pasteValidation,
   requiredValidation,
   validateCharacters,
+  validateNumber,
 } from "../../../../validations/validations.js";
 
+import { appendErrorMessage } from "../../../../validations/span-error.js";
+
 export function eachQuesValidation(questionContainer, questionJson) {
+  //text input
   if (questionJson.type === "text") {
     const textInput = questionContainer.querySelector(
       ".user-question-input-text"
@@ -37,7 +41,9 @@ export function eachQuesValidation(questionContainer, questionJson) {
         requiredValidation(event);
       }
     });
-  } else if (questionJson.type === "paragraph") {
+  }
+  // paragraph input
+  else if (questionJson.type === "paragraph") {
     const textboxInput = questionContainer.querySelector(
       ".user-question-input-textarea"
     );
@@ -73,6 +79,77 @@ export function eachQuesValidation(questionContainer, questionJson) {
     textboxInput.addEventListener("input", function () {
       this.style.height = "auto";
       this.style.height = this.scrollHeight + "px";
+    });
+  }
+  // number input validations
+  else if (questionJson.type === "number") {
+    const numberInput = questionContainer.querySelector(
+      ".user-question-input-number"
+    );
+    // validations
+    numberInput.addEventListener("keypress", (event) => {
+      validateKeyPress(event, 20, "48-57,46");
+    });
+
+    numberInput.addEventListener("paste", (event) => {
+      pasteValidation(event, 20);
+    });
+
+    numberInput.addEventListener("blur", (event) => {
+      if (
+        questionJson.maxValue !== 0 &&
+        questionJson.minValue !== 0 &&
+        questionJson.minValue < questionJson.maxValue
+      ) {
+        validateNumber(event, questionJson.minValue, questionJson.maxValue);
+      } else if (questionJson.maxValue !== 0) {
+        validateNumber(event, 0, questionJson.maxValue);
+      } else if (questionJson.minValue !== 0) {
+        validateNumber(event, questionJson.minValue);
+      }
+      validateCharacters(event, "48-57");
+      if (questionJson.required) {
+        requiredValidation(event);
+      }
+    });
+  }
+  // radio checkbox are validated on submit
+  // file
+  else if (questionJson.type === "file") {
+    const fileInput = questionContainer.querySelector(
+      ".user-question-file-input"
+    );
+    // validations
+    fileInput.addEventListener("blur", (event) => {
+      if (questionJson.required) {
+        requiredValidation(event);
+      }
+    });
+
+    // only allow specific files
+    fileInput.addEventListener("change", (event) => {
+      // questionJson.fileTypes = ['.docx', '.jpg, .png, .jpeg', '.pdf']
+      const fileTypes = [];
+      questionJson.fileTypes.forEach((fileType) => {
+        fileType.split(", ").forEach((type) => {
+          fileTypes.push(type);
+        });
+      });
+      const file = fileInput.files[0];
+      if (file) {
+        const fileName = file.name;
+        const fileType = fileName.slice(fileName.lastIndexOf('.'));
+        if (!fileTypes.includes(fileType)) {
+          fileInput.value = "";
+          appendErrorMessage(fileInput, `Invalid file type ${fileType}`);
+          setTimeout(() => {
+            const span = fileInput.nextElementSibling;
+            if (span && span.classList.contains("validation-error")) {
+              span.remove();
+            }
+          }, 3000);
+        }
+      }
     });
   }
 }

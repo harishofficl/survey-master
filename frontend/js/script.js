@@ -8,10 +8,10 @@ import createSurvey from "../modules/admin/create-survey/create-survey.js";
 // creates header and main tag in the body
 await structInit();
 
-// loginInit();
+loginInit();
 
 // createSurvey();
 
 // adminDashboardInit();
 
-userDashboardInit();
+// userDashboardInit();

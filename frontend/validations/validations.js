@@ -1,7 +1,7 @@
 import { appendErrorMessage } from "./span-error.js";
 
 /* 1. keypress validation */
-export function validateKeyPress(event, maxLength, allowedChars) {
+export function validateKeyPress(event, maxLength = 50, allowedChars) {
   // allowedChars = "64-91,96-123,47-58,95"
   const tag = event.target;
   const charCode = event.keyCode;
@@ -46,10 +46,19 @@ export function pasteValidation(event, maxLength) {
 }
 
 /* 3. required validation */
-export function requiredValidation(event) {
+export function requiredValidation(event, type) {
   const tag = event.target;
   let span = tag.nextElementSibling;
-  if (tag.value.length === 0) {
+  if (type === "option") {
+    if (!span || !span.classList.contains("validation-error")) {
+      span = appendErrorMessage(tag);
+    }
+  } else if (type == "file" && tag.value && tag.value.name === ""){
+    if (!span || !span.classList.contains("validation-error")) {
+      span = appendErrorMessage(tag);
+    }
+  }
+  else if (tag.value.length === 0) {
     if (!span || !span.classList.contains("validation-error")) {
       span = appendErrorMessage(tag);
     }
@@ -112,6 +121,29 @@ export function validateCharacters(event, allowedChars, minLength = 0) {
       span &&
       span.classList.contains("validation-error") &&
       span.textContent.startsWith("Invalid character:")
+    ) {
+      span.remove();
+    }
+  }
+}
+
+/* validate min max range of number */
+export function validateNumber(event, min, max = Infinity) {
+  const tag = event.target;
+  const value = Number(tag.value);
+  let span = tag.nextElementSibling;
+
+  if (value < min || value > max) {
+    if (!span || !span.classList.contains("validation-error")) {
+      span = appendErrorMessage(tag, `Enter number between ${min} and ${max}`);
+    } else {
+      span.textContent = `Enter number between ${min} and ${max}`;
+    }
+  } else {
+    if (
+      span &&
+      span.classList.contains("validation-error") &&
+      span.textContent.startsWith("Enter number between")
     ) {
       span.remove();
     }

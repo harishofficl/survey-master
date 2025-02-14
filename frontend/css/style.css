@@ -893,6 +893,13 @@ input:checked + .slider:before {
   padding: 0 10px;
 }
 
+.user-question-file-allowed {
+  font-size: 14px;
+  font-weight: 400;
+  color: #484d55;
+  padding: 0 10px;
+}
+
 .user-answer-container {
   display: flex;
   flex-direction: column;

@@ -90,7 +90,7 @@ export default async function (surveyId) {
   insertSurveyQuestions(surveyForm, survey.questions);
 
   // event listeners
-  fillSurveyEventListener(surveyForm);
+  fillSurveyEventListener(surveyForm, survey.questions);
 
   return surveyForm;
 }

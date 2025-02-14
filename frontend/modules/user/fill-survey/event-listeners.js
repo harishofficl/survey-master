@@ -1,5 +1,6 @@
 import dashboardInit from "../dashboard/dashboard.js";
 import { currentUserStore } from "../../../data/store.js";
+import { requiredValidation } from "../../../validations/validations.js";
 
 // post response to the server
 async function postResponse(response) {
@@ -19,15 +20,50 @@ export function navBarEventListener(navBarObject) {
     .addEventListener("click", () => dashboardInit());
 }
 
-export async function fillSurveyEventListener(surveyObject) {
+export async function fillSurveyEventListener(surveyObject, questionsJson) {
   const submitButton = surveyObject.querySelector(".submit-user-response-btn");
 
   submitButton.addEventListener("click", function () {
 
-    // trigger event listeners for file input
-    //....
-
-
+    // Validate the form required fields
+    questionsJson.forEach((questionJson) => {
+      const questionContainer = document.getElementById(questionJson.id);
+      if (questionJson.required) {
+        if(questionJson.type === "text") {
+          const inputElement = questionContainer.querySelector(".user-question-input-text");
+          requiredValidation({ target: inputElement });
+        } else if (questionJson.type === "textarea") {
+          const inputElement = questionContainer.querySelector(".user-question-input-textarea");
+          requiredValidation({ target: inputElement });
+        } else if (questionJson.type === "number") {
+          const inputElement = questionContainer.querySelector(".user-question-input-number");
+          requiredValidation({ target: inputElement });
+        } else if (questionJson.type === "radio" || questionJson.type === "checkbox") {
+          const inputElements = questionContainer.querySelectorAll(".user-answer-option-container > input");
+          let isChecked = false;
+          inputElements.forEach((inputElement) => {
+            if (inputElement.checked) {
+              isChecked = true;
+              return;
+            }
+          });
+          if (!isChecked) {
+            requiredValidation({ target: inputElements[0].parentElement.parentElement }, "option");
+          } else {
+            const span = inputElements[0].parentElement.parentElement.nextElementSibling;
+            if (span && span.classList.contains("validation-error")) {
+              span.remove();
+            }
+          }
+        } else if (questionJson.type === "file") {
+          const inputElement = questionContainer.querySelector(".user-question-file-input");
+          requiredValidation({ target: inputElement }, "file");
+        }
+      }
+    });
+    // If there is any validation error, prevent form submission
+    if (surveyObject.querySelector(".validation-error")) return;
+    
     // Build response object
     const answers = surveyObject.querySelectorAll(
       ".fill-survey-form-body .question-main-container"
@@ -61,7 +97,7 @@ export async function fillSurveyEventListener(surveyObject) {
               )
             ).map((checkbox) => checkbox.value);
             answerType = "checkbox";
-          } else if (inputElement.type === "file") {
+          } else if (inputElement.type === "file" && inputElement.files[0]) {
             answerValue = inputElement.files[0].name; // Get the file name
             answerType = "file";
           } else if (inputElement.type === "textarea") {

@@ -64,8 +64,12 @@ export default async function (responseId) {
       });
     } else if (response.responses[index].type === "file") {
       const input = question.querySelector(".user-question-file-input");
-      // input.files[0] = response.responses[index].answer;
-      input.disabled = true;
+      const inputTypes = question.querySelector(".user-question-file-allowed");
+      input.remove();
+      inputTypes.remove();
+      const answer = document.createElement("p");
+      answer.textContent = response.responses[index].answer;
+      question.querySelector(".user-answer-container").appendChild(answer);
     }
   });
 
