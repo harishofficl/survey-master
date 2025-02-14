@@ -113,7 +113,6 @@ export function eachQuesValidation(questionContainer, questionJson) {
       }
     });
   }
-  // radio checkbox are validated on submit
   // file
   else if (questionJson.type === "file") {
     const fileInput = questionContainer.querySelector(
@@ -128,7 +127,6 @@ export function eachQuesValidation(questionContainer, questionJson) {
 
     // only allow specific files
     fileInput.addEventListener("change", (event) => {
-      // questionJson.fileTypes = ['.docx', '.jpg, .png, .jpeg', '.pdf']
       const fileTypes = [];
       questionJson.fileTypes.forEach((fileType) => {
         fileType.split(", ").forEach((type) => {
