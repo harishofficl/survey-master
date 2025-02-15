@@ -14,7 +14,7 @@ const navBarElements = [
           {
             tag: "img",
             attributes: {
-              src: "./images/survey-icon.png",
+              src: "../images/survey-icon.png",
               alt: "Survey Master Logo",
             },
           },
@@ -50,7 +50,7 @@ const navBarElements = [
               {
                 tag: "img",
                 attributes: {
-                  src: "./images/user-icon.png",
+                  src: "../images/user-icon.png",
                   alt: "User Icon",
                 },
               },
@@ -66,7 +66,7 @@ export default function () {
   const navBar = htmlBuilder(navBarElements)[0];
   document.getElementById("header").replaceChildren(navBar); // append to `header`
   const helloUserText = navBar.querySelector(".hello-user-text");
-  helloUserText.textContent = `Hello, ${currentUserStore.getState().name}`;
+  helloUserText.textContent = `Hi, ${currentUserStore.getState().name}`;
 
 
   // event listeners

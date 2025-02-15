@@ -1,6 +1,6 @@
-import dashboardInit from "../dashboard/dashboard.js";
 import { currentUserStore, url } from "../../../data/store.js";
 import { requiredValidation } from "../../../validations/validations.js";
+import { loadPage } from "../../../js/routing.js";
 
 // post response to the server
 async function postResponse(response) {
@@ -17,37 +17,57 @@ async function postResponse(response) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
   } catch (error) {
-    swal("Error", "Something went wrong while submitting your response!", "error");
+    swal(
+      "Error",
+      "Something went wrong while submitting your response!",
+      "error"
+    );
     throw error;
   }
 }
 
 export function navBarEventListener(navBarObject) {
-  navBarObject
-    .querySelector(".nav-bar__logo")
-    .addEventListener("click", () => dashboardInit());
+  if (currentUserStore.getState().role == "user") {
+    navBarObject
+      .querySelector(".nav-bar__logo")
+      .addEventListener("click", () => loadPage("user"));
+  } else {
+    navBarObject
+      .querySelector(".nav-bar__logo")
+      .addEventListener("click", () => loadPage("admin"));
+  }
 }
 
 export async function fillSurveyEventListener(surveyObject, questionsJson) {
   const submitButton = surveyObject.querySelector(".submit-user-response-btn");
 
   submitButton.addEventListener("click", function () {
-
     // Validate the form required fields
     questionsJson.forEach((questionJson) => {
       const questionContainer = document.getElementById(questionJson.id);
       if (questionJson.required) {
-        if(questionJson.type === "text") {
-          const inputElement = questionContainer.querySelector(".user-question-input-text");
+        if (questionJson.type === "text") {
+          const inputElement = questionContainer.querySelector(
+            ".user-question-input-text"
+          );
           requiredValidation({ target: inputElement });
         } else if (questionJson.type === "textarea") {
-          const inputElement = questionContainer.querySelector(".user-question-input-textarea");
+          const inputElement = questionContainer.querySelector(
+            ".user-question-input-textarea"
+          );
           requiredValidation({ target: inputElement });
         } else if (questionJson.type === "number") {
-          const inputElement = questionContainer.querySelector(".user-question-input-number");
+          const inputElement = questionContainer.querySelector(
+            ".user-question-input-number"
+          );
           requiredValidation({ target: inputElement });
-        } else if (questionJson.type === "radio" || questionJson.type === "checkbox") {
-          const inputElements = questionContainer.querySelectorAll(".user-answer-option-container > input");
+        } else if (
+          questionJson.type === "radio" ||
+          questionJson.type === "checkbox"
+        ) {
+          const inputElements = questionContainer.querySelectorAll(
+            ".user-answer-option-container > input"
+          );
           let isChecked = false;
           inputElements.forEach((inputElement) => {
             if (inputElement.checked) {
@@ -56,23 +76,29 @@ export async function fillSurveyEventListener(surveyObject, questionsJson) {
             }
           });
           if (!isChecked) {
-            requiredValidation({ target: inputElements[0].parentElement.parentElement }, "option");
+            requiredValidation(
+              { target: inputElements[0].parentElement.parentElement },
+              "option"
+            );
           } else {
-            const span = inputElements[0].parentElement.parentElement.nextElementSibling;
+            const span =
+              inputElements[0].parentElement.parentElement.nextElementSibling;
             if (span && span.classList.contains("validation-error")) {
               span.remove();
             }
           }
         } else if (questionJson.type === "file") {
-          const inputElement = questionContainer.querySelector(".user-question-file-input");
+          const inputElement = questionContainer.querySelector(
+            ".user-question-file-input"
+          );
           requiredValidation({ target: inputElement }, "file");
         }
       }
     });
-    
+
     // If there is any validation error, prevent form submission
     if (surveyObject.querySelector(".validation-error")) return;
-    
+
     // Build response object
     const answers = surveyObject.querySelectorAll(
       ".fill-survey-form-body .question-main-container"
@@ -138,6 +164,6 @@ export async function fillSurveyEventListener(surveyObject, questionsJson) {
       "Response Submitted",
       "Your response is submitted successfully...",
       "success"
-    ).then(() => dashboardInit());
+    ).then(() => loadPage(`user`));
   });
 }

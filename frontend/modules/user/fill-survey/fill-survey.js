@@ -2,6 +2,7 @@ import { url } from "../../../data/store.js";
 import htmlBuilder from "../../../utils/htmlBuilder.js";
 import { fillSurveyEventListener } from "./event-listeners.js";
 import insertSurveyQuestions from "./insert-questions/insert-questions.js";
+import navBar from "./nav-bar.js";
 
 async function fetchSurvey(surveyId) {
   const api = `http://${url}/api/surveys/${surveyId}`;
@@ -18,7 +19,11 @@ async function fetchSurvey(surveyId) {
   }
 }
 
-export default async function (surveyId) {
+export async function fillSurveyUser(surveyId) {
+
+  // nav bar
+  navBar();
+
   const survey = await fetchSurvey(surveyId);
   if(!survey) return;
   

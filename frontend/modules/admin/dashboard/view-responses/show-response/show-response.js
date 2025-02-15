@@ -1,23 +1,31 @@
 import { url } from "../../../../../data/store.js";
 import htmlBuilder from "../../../../../utils/htmlBuilder.js";
-import fillSurvey from "../../../../user/fill-survey/fill-survey.js";
+import { fillSurveyUser } from "../../../../user/fill-survey/fill-survey.js";
 import showResponseEventListeners from "./event-listeners.js";
 
 async function fetchResponse(responseId) {
   const api = `http://${url}/api/responses/${responseId}`;
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(api);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    swal("Error", "Something went wrong while fetching the response!", "error");
+    return null;
+  }
 }
-
-export default async function (responseId) {
+export async function viewResponseInit(responseId) {
   const response = await fetchResponse(responseId);
   // show-response page
   const mainContainer = document.querySelector(".main");
 
   // load fill survey page content without submit button
 
-  const fillSurveyPage = await fillSurvey(response.surveyId);
+  const fillSurveyPage = await fillSurveyUser(response.surveyId);
+  if (!fillSurveyPage) return;
 
   const title = fillSurveyPage.querySelector(
     ".create-survey-title-container > h1"
@@ -70,15 +78,14 @@ export default async function (responseId) {
       input.remove();
       inputTypes.remove();
 
-      
       const answer = htmlBuilder([
         {
           tag: "p",
           class: "user-question-file-answer-text",
-        }
+        },
       ])[0];
 
-      if(response.responses[index].answer.length === 0) {
+      if (response.responses[index].answer.length === 0) {
         answer.textContent = "No file uploaded";
       } else {
         answer.textContent = response.responses[index].answer;

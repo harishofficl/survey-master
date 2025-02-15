@@ -79,7 +79,7 @@ const domJson = [
   },
 ];
 
-export default function () {
+export function createSurveyInit() {
   // nav bar
   navBar();
 

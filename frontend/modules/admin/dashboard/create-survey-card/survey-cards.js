@@ -34,9 +34,17 @@ import { currentUserStore, url } from "../../../../data/store.js";
 // fetch surveys from db
 async function fetchSurveyCards(userId) {
   const api = `http://${url}/api/surveys/user?userId=${userId}`;
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(api);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    swal("Error", "Something went wrong while fetching the surveys!", "error");
+    return [];
+  }
 }
 
 // function to create survey card

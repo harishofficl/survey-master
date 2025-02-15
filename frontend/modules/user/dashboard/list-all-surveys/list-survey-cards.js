@@ -19,7 +19,6 @@ async function fetchSurveys(page, size) {
   }
 }
 
-
 export default async function (dashboardBody) {
 
   const surveys = await fetchSurveys();

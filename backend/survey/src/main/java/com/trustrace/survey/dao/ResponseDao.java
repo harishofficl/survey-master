@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +50,7 @@ public class ResponseDao {
 
     public Response createResponse(Response response) {
         logger.info("Creating new response with id: {}", response.getId());
-        response.setCreatedAt(new Date());
+        response.setCreatedAt(LocalDateTime.now());
         Optional<Survey> surveyOptional = surveyDao.getSurveyById(response.getSurveyId());
         if(surveyOptional.isPresent()) {
             Survey survey = surveyOptional.get();

@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,6 @@ public class Response {
     private String id;
     private String surveyId;
     private String responderName;
-    private Date createdAt;
+    private LocalDateTime createdAt;
     private List<Answer> responses;
 }

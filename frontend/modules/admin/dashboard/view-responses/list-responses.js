@@ -3,15 +3,23 @@ import listResponsesEventListener from "./event-listeners.js";
 import { url } from "../../../../data/store.js";
 
 async function fetchSurveyResponses(surveyId, page, size) {
-  if(!page) page = 0;
-  if(!size) size = 2; // default size
+  if (!page) page = 0;
+  if (!size) size = 2; // default size
   const api = `http://${url}/api/responses/survey?surveyId=${surveyId}&page=${page}&size=${size}`;
-  const response = await fetch(api);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(api);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    swal("Error", "Something went wrong while fetching the survey responses!", "error");
+    return [];
+  }
 }
 
-export default async function (responsesTable, surveyId, page) {
+export default async function (responsesTable, surveyId, page, size) {
   const surveyResponsesData = await fetchSurveyResponses(surveyId, page);
 
   const tableBody = responsesTable.querySelector("tbody");
@@ -30,14 +38,21 @@ export default async function (responsesTable, surveyId, page) {
   }
 
   tableBody.innerHTML = "";
+  const serialCounter = page * size;
   surveyResponsesData.forEach((response, index) => {
     const responseRowObject = htmlBuilder([
       {
         tag: "tr",
         children: [
-          { tag: "td", text: index + 1 },
+          { tag: "td", text: serialCounter + index + 1},
           { tag: "td", text: response.responderName },
-          { tag: "td", text: response.createdAt.split("T")[0] + " " + response.createdAt.split("T")[1].split(".")[0] },
+          {
+            tag: "td",
+            text:
+              response.createdAt.split("T")[0] +
+              " " +
+              response.createdAt.split("T")[1].split(".")[0],
+          },
           {
             tag: "td",
             children: [

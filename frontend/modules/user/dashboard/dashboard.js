@@ -28,7 +28,7 @@ const domJson = [
 ];
 
 
-export default function () {
+export function userDashboardInit() {
   // navBar
   navBar();
 

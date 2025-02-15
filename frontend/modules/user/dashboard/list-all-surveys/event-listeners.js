@@ -1,4 +1,4 @@
-import fillSurveyUser from "../../fill-survey/fill-survey.js";
+import { loadPage } from "../../../../js/routing.js";
 
 export default function (dashboardBody) {
   const surveyCards = dashboardBody.querySelectorAll(".survey-card");
@@ -7,8 +7,7 @@ export default function (dashboardBody) {
     surveyCard
       .querySelector(".survey-card-button")
       .addEventListener("click", () => {
-        // load survey responses
-        fillSurveyUser(surveyCard.id); // pass survey id !
+        loadPage(`user/fill-survey?surveyId=${surveyCard.id}`);
       });
   });
 }

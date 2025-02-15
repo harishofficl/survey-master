@@ -10,8 +10,11 @@ await structInit();
 
 loginInit();
 
-// createSurvey();
-
 // adminDashboardInit();
+// createSurvey();
+//loadSurveyResponses(surveyId, totalResponseCount);
+//showResponse(responseId);
+
 
 // userDashboardInit();
+// fillSurveyUser(surveyCard.id);

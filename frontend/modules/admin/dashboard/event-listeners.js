@@ -1,8 +1,7 @@
-import createSurveyInit from "../create-survey/create-survey.js";
-import dashboardInit from "./dashboard.js";
+import { loadPage } from "../../../js/routing.js";
 
 export function navBarEventListener(navBarObject) {
-  navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => dashboardInit());
+  navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => loadPage("admin"));
 }
 
 export function dashboardEventListener() {
@@ -10,6 +9,6 @@ export function dashboardEventListener() {
     ".create-survey-floating-button"
   );
   createSurveyFloatingButton.addEventListener("click", () => {
-    createSurveyInit();
+    loadPage("admin/create-survey");
   });
 }

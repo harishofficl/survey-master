@@ -1,5 +1,5 @@
 import publishSurvey from "./publish-survey.js";
-import dashboardInit from "../dashboard/dashboard.js";
+import { loadPage } from "../../../js/routing.js";
 
 import {
   validateKeyPress,
@@ -67,5 +67,5 @@ export function eventListenersHeaderFooter() {
 export function eventListenersNav(navBar) {
   navBar
     .querySelector(".nav-bar__logo")
-    .addEventListener("click", () => dashboardInit());
+    .addEventListener("click", () => loadPage("admin"));
 }

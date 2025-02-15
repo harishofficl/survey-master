@@ -136,10 +136,23 @@ export function eachQuesValidation(questionContainer, questionJson) {
       const file = fileInput.files[0];
       if (file) {
         const fileName = file.name;
-        const fileType = fileName.slice(fileName.lastIndexOf('.'));
+        const maxFileSize = questionJson.maxFileSize;
+        const fileType = fileName.slice(fileName.lastIndexOf("."));
         if (!fileTypes.includes(fileType)) {
           fileInput.value = "";
           appendErrorMessage(fileInput, `Invalid file type ${fileType}`);
+          setTimeout(() => {
+            const span = fileInput.nextElementSibling;
+            if (span && span.classList.contains("validation-error")) {
+              span.remove();
+            }
+          }, 3000);
+        } else if (file.size > maxFileSize * 1024 * 1024) {
+          fileInput.value = "";
+          appendErrorMessage(
+            fileInput,
+            `File size exceeds the maximum limit of ${maxFileSize} MB`
+          );
           setTimeout(() => {
             const span = fileInput.nextElementSibling;
             if (span && span.classList.contains("validation-error")) {

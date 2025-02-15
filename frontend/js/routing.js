@@ -1,56 +1,68 @@
+import structInit from "../utils/struct-init.js";
+import login from "../modules/auth/login.js";
+
+// load basic structure of index.html
+await structInit();
+
 window.addEventListener("load", () => {
   handleRouteChange();
 });
 
-// Listen for back/forward navigation
 window.addEventListener("popstate", () => {
   handleRouteChange();
 });
 
-// Function to navigate to a page by changing the URL and loading the content
-export function navigateTo(page, needHistory = true) {
-  if (needHistory) {
-    history.pushState({ page }, "", `/${page}`);
-  } else {
+export function loadPage(page, replace = false) {
+  if (replace) {
     history.replaceState({ page }, "", `/${page}`);
+  } else {
+    history.pushState({ page }, "", `/${page}`);
   }
   handleRouteChange();
 }
 
-// Function to handle routing based on URL changes
 function handleRouteChange() {
   const path = window.location.pathname.replace("/", "");
 
+  // adminDashboardInit();
+  // createSurvey();
+  //loadSurveyResponses(surveyId, totalResponseCount);
+  //showResponse(responseId);
+
+  // userDashboardInit();
+  // fillSurveyUser(surveyCard.id);
+
   const routes = {
-    "": loadLoginPage,
-    "login": loadLoginPage,
-    "admin": lazyAdminInit,
-    "user": lazyUserInit,
-    "admin/create-survey": loadCreateSurveyPage,
-    "user/survey": () => {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
-      const name = params.get("name");
-      const email = params.get("email");
-      loadSurveyPage(id, name, email);
-    },
-    "admin/survey": () => {
-      const id = new URLSearchParams(window.location.search).get("id");
-      loadAdminSurveyPreview(id);
-    },
-    "admin/response": () => {
-      const id = new URLSearchParams(window.location.search).get("id");
+    // auth routes
+    "": login,
+    login: login,
+
+    // admin routes
+    admin: adminDashboardLazy,
+    "admin/create-survey": createSurveyLazy,
+    "admin/list-responses": () => {
       const surveyId = new URLSearchParams(window.location.search).get(
         "surveyId"
       );
-      loadAdminResponse(id, surveyId);
+      const totalResponseCount = new URLSearchParams(
+        window.location.search
+      ).get("responseCount");
+      loadSurveyResponsesLazy(surveyId, totalResponseCount);
     },
-    "admin/survey-list": loadSurveyList,
-    "admin/response-list": () => {
+    "admin/view-response": () => {
+      const responseId = new URLSearchParams(window.location.search).get(
+        "responseId"
+      );
+      showResponseLazy(responseId);
+    },
+
+    // user routes
+    user: userDashboardLazy,
+    "user/fill-survey": () => {
       const surveyId = new URLSearchParams(window.location.search).get(
         "surveyId"
       );
-      loadResponseList(surveyId);
+      fillSurveyUserLazy(surveyId);
     },
   };
 
@@ -58,19 +70,101 @@ function handleRouteChange() {
     routes[path] || routes[window.location.pathname.replace("/", "")];
   if (routeAction) {
     routeAction();
+  } else {
+    swal("Error", "Page not found!", "error");
   }
 }
 
-// lazy loading sample
-
-function lazyUserInit() {
-  if (window.userPageInit) {
-    window.userPageInit();
+// lazy loading modules
+// admin dashboard lazy loading
+function adminDashboardLazy() {
+  if (window.adminDashboardInit) {
+    window.adminDashboardInit();
   } else {
-    import("./js/user-page/script.js")
+    import("../modules/admin/dashboard/dashboard.js")
       .then((m) => {
-        m.userPageInit();
+        m.adminDashboardInit();
       })
-      .catch((err) => console.error("Failed to load user page script:", err));
+      .catch((err) => {
+        swal("Error", "Admin Dashboard not found!", "error");
+      });
+  }
+}
+
+// create survey lazy loading
+function createSurveyLazy() {
+  if (window.createSurveyInit) {
+    window.createSurveyInit();
+  } else {
+    import("../modules/admin/create-survey/create-survey.js")
+      .then((m) => {
+        m.createSurveyInit();
+      })
+      .catch((err) => {
+        swal("Error", "Create Survey not found!", "error");
+      });
+  }
+}
+
+// list survey responses lazy loading
+function loadSurveyResponsesLazy(surveyId, totalResponseCount) {
+  if (window.loadSurveyResponses) {
+    window.loadSurveyResponses(surveyId, totalResponseCount);
+  } else {
+    import("../modules/admin/dashboard/view-responses/view-responses.js")
+      .then((m) => {
+        m.loadSurveyResponses(surveyId, totalResponseCount);
+      })
+      .catch((err) => {
+        swal("Error", "List Survey Responses not found!", "error");
+      });
+  }
+}
+
+// show response lazy loading
+function showResponseLazy(responseId) {
+  if (window.viewResponseInit) {
+    window.viewResponseInit(responseId);
+  } else {
+    import(
+      "../modules/admin/dashboard/view-responses/show-response/show-response.js"
+    )
+      .then((m) => {
+        m.viewResponseInit(responseId);
+      })
+      .catch((err) => {
+        swal("Error", "View Response not found!", "error");
+      });
+  }
+}
+
+// user dashboard lazy loading
+function userDashboardLazy() {
+  if (window.userDashboardInit) {
+    window.userDashboardInit();
+  } else {
+    import("../modules/user/dashboard/dashboard.js")
+      .then((m) => {
+        m.userDashboardInit();
+      })
+      .catch((err) => {
+        console.log(err);
+        swal("Error", "User Dashboard not found!", "error");
+      });
+  }
+}
+
+// fill survey user lazy loading
+function fillSurveyUserLazy(surveyId) {
+  if (window.fillSurveyUser) {
+    window.fillSurveyUser(surveyId);
+  } else {
+    import("../modules/user/fill-survey/fill-survey.js")
+      .then((m) => {
+        m.fillSurveyUser(surveyId);
+      })
+      .catch((err) => {
+        swal("Error", "Fill Survey not found!", "error");
+      });
   }
 }

@@ -218,7 +218,12 @@ export default function (question, type, questionNumber) {
               tag: "p",
               class: "user-question user-question-file-allowed poppins-text",
               text: `Only ${question.fileTypes.join(", ")} - allowed`,
-            }
+            },
+            {
+              tag: "p",
+              class: "user-question user-question-file-allowed poppins-text",
+              text: `Max file size: ${question.maxFileSize} MB`,
+            },
           ],
         },
         {

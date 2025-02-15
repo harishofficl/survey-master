@@ -1,15 +1,23 @@
-import adminDashboardInit from "../../admin/dashboard/dashboard.js";
 import { currentUserStore, url } from "../../../data/store.js";
+import { loadPage } from "../../../js/routing.js";
 
 async function postSurvey(survey) {
   const api = `http://${url}/api/surveys`;
-  await fetch(api, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(survey),
-  });
+  try {
+    const res = await fetch(api, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(survey),
+    });
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+  } catch (error) {
+    swal("Error", "Something went wrong while publishing the survey!", "error");
+    throw error;
+  }
 }
 
 export default async function () {
@@ -95,6 +103,6 @@ export default async function () {
     "Your survey has been published successfully!",
     "success"
   ).then(() => {
-    adminDashboardInit();
+    loadPage("admin");
   });
 }

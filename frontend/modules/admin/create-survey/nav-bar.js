@@ -13,7 +13,7 @@ const navBarElements = [
           {
             tag: "img",
             attributes: {
-              src: "./images/survey-icon.png",
+              src: "../images/survey-icon.png",
               alt: "Survey Master Logo",
             },
           },
@@ -46,7 +46,7 @@ const navBarElements = [
               {
                 tag: "img",
                 attributes: {
-                  src: "./images/user-icon.png",
+                  src: "../images/user-icon.png",
                   alt: "User Icon",
                 },
               },

@@ -38,7 +38,7 @@ const domJson = [
   },
 ];
 
-export default function () {
+export function adminDashboardInit() {
   // navBar
   navBar();
 

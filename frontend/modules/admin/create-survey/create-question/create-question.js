@@ -163,7 +163,7 @@ const domJson = [
                 tag: "img",
                 class: "add-question-icon",
                 attributes: {
-                  src: "./images/add-button.png",
+                  src: "../images/add-button.png",
                   alt: "add question",
                 },
               },
@@ -177,7 +177,7 @@ const domJson = [
                 tag: "img",
                 class: "delete-question-icon",
                 attributes: {
-                  src: "./images/delete.png",
+                  src: "../images/delete.png",
                   alt: "delete",
                 },
               },

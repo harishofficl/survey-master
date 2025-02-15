@@ -3,6 +3,8 @@ package com.trustrace.survey.view;
 import com.trustrace.survey.model.Response;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -14,7 +16,7 @@ public class ResponseView {
     private String id;
     private String surveyId;
     private String responderName;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     public ResponseView(Response response) {
         this.id = response.getId();

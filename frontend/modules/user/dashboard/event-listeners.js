@@ -1,4 +1,5 @@
-import dashboardInit from "./dashboard.js";
+import { loadPage } from "../../../js/routing.js";
+
 
 export function dashboardEventListener() {
   // ...
@@ -6,5 +7,5 @@ export function dashboardEventListener() {
 
 
 export function navBarEventListener(navBarObject) {
-  navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => dashboardInit());
+  navBarObject.querySelector(".nav-bar__logo").addEventListener("click", () => loadPage("user"));
 }

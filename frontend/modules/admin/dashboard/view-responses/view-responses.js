@@ -92,13 +92,15 @@ const domJson = [
   },
 ];
 
-export default function (surveyId, totalResponseCount) {
+export function loadSurveyResponses(surveyId, totalResponseCount) {
   const responses = htmlBuilder(domJson)[0];
   document.getElementById("main").replaceChildren(responses);
 
+  const size = 2; // 2 responses per page
+
   const responsesTable = responses.querySelector(".responses-table");
 
-  const totalPages = Math.ceil(totalResponseCount / 2); // 2 responses per page
+  const totalPages = Math.ceil(totalResponseCount / size);
 
   const paginationHandleButtonContainer = document.getElementById(
     "pagination-handle-button-container"
@@ -112,7 +114,7 @@ export default function (surveyId, totalResponseCount) {
   const updatePage = (newPage) => {
     page = newPage;
     pageElement.textContent = `Page ${page + 1} of ${totalPages}`;
-    listResponses(responsesTable, surveyId, page);
+    listResponses(responsesTable, surveyId, page, size);
   };
 
   paginationHandleButtonContainer
@@ -131,6 +133,5 @@ export default function (surveyId, totalResponseCount) {
       }
     });
 
-  // call this module to update response content
-  listResponses(responsesTable, surveyId, page); // list responses
+  listResponses(responsesTable, surveyId, page, size);
 }

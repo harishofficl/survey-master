@@ -1,8 +1,7 @@
-import showResponse from "./show-response/show-response.js";
+import { loadPage } from "../../../../js/routing.js";
 
 export default function (viewResponseButton, responseId) {
   viewResponseButton.addEventListener("click", () => {
-    showResponse(responseId);
+    loadPage(`admin/view-response?responseId=${responseId}`);
   });
-
 }

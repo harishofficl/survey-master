@@ -1,6 +1,5 @@
 import { users, admins, currentUserStore } from "../../data/store.js";
-import adminDashboardInit from "../admin/dashboard/dashboard.js";
-import userDashboardInit from "../user/dashboard/dashboard.js";
+import { loadPage } from "../../js/routing.js";
 
 export default async function (email, password) {
   const user = users.find(
@@ -14,7 +13,7 @@ export default async function (email, password) {
     });
 
     swal("Welcome!", "You have successfully logged in!", "success").then(() => {
-      userDashboardInit();
+      loadPage(`user`); // user dashboard
     });
   } else {
     const admin = admins.find(
@@ -30,13 +29,14 @@ export default async function (email, password) {
 
       swal("Welcome!", "You have successfully logged in!", "success").then(
         () => {
-          adminDashboardInit();
+          loadPage(`admin`); // admin dashboard
         }
       );
     } else {
       swal("Login Failed", "Invalid email or password", "error").then(() => {
-        document.getElementById("password").value = "";
-        document.getElementById("password").focus();
+        const passwordInput = document.getElementById("password");
+        passwordInput.value = "";
+        passwordInput.focus();
       });
     }
   }

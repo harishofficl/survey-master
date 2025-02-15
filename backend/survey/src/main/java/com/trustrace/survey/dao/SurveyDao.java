@@ -5,6 +5,7 @@ import com.trustrace.survey.view.SurveyView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -49,16 +51,16 @@ public class SurveyDao {
 
     public Survey createSurvey(Survey survey) {
         logger.info("Creating new survey with id: {}", survey.getId());
-        survey.setCreatedAt(new Date());
+        survey.setCreatedAt(LocalDateTime.now());
         survey.setPublished(true);
         return mongoTemplate.save(survey);
     }
 
     public Survey updateSurvey(String id, Survey survey) {
         logger.info("Updating survey with id: {}", id);
-        survey.setCreatedAt(getSurveyById(id).isPresent() ? getSurveyById(id).get().getCreatedAt() : new Date());
+        survey.setCreatedAt(getSurveyById(id).isPresent() ? getSurveyById(id).get().getCreatedAt() : LocalDateTime.now());
         survey.setId(id);
-        survey.setUpdatedAt(new Date());
+        survey.setUpdatedAt(LocalDateTime.now());
         return mongoTemplate.save(survey);
     }
 
