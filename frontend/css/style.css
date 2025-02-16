@@ -426,11 +426,17 @@ li {
   background-size: 14px;
 }
 
+.answer-type:hover {
+  cursor: pointer;
+}
+
 .answer-type:focus {
   background-image: url("../images/up-arrow.png");
   background-size: 18px;
   border-color: #212832;
 }
+
+
 
 .short-answer {
   flex: 70%;
@@ -494,6 +500,10 @@ li {
 /* Toggle Switch */
 .required-toggle-label {
   color: #212832;
+}
+
+.required-toggle-label:hover {
+  cursor: pointer;
 }
 
 .switch {
@@ -573,6 +583,7 @@ input:checked + .slider:before {
 
 .mcq-add-option-property:hover {
   border-bottom: 1px solid #c3c6c9;
+  cursor: pointer;
 }
 
 .mcq-option-property:focus {
@@ -758,6 +769,10 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.survey-card:hover {
+  transform: scale(1.01);
 }
 
 .survey-card-title {
@@ -963,6 +978,10 @@ input:checked + .slider:before {
 .user-question-option-text {
   font-size: 15px;
   color: #212832;
+}
+
+.user-question-option-text:hover {
+  cursor: pointer;
 }
 
 .user-question-radio-input {

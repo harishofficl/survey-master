@@ -41,8 +41,8 @@ export const admins = [
   {
     id: "admin-2",
     name: "BOSS",
-    email: "boss",
-    password: "boss",
+    email: "b",
+    password: "b",
   },
 ];
 

@@ -207,7 +207,7 @@ export const multipleChoiceDom = [
                   {
                     tag: "img",
                     attributes: {
-                      src: "./images/option-icon.png",
+                      src: "../images/option-icon.png",
                       alt: "radio",
                     },
                   },
@@ -228,7 +228,7 @@ export const multipleChoiceDom = [
                   {
                     tag: "img",
                     attributes: {
-                      src: "./images/x-mark.png",
+                      src: "../images/x-mark.png",
                       alt: "x-mark.png",
                     },
                   },
@@ -247,7 +247,7 @@ export const multipleChoiceDom = [
                   {
                     tag: "img",
                     attributes: {
-                      src: "./images/option-icon.png",
+                      src: "../images/option-icon.png",
                       alt: "radio",
                     },
                   },
@@ -286,7 +286,7 @@ export const checkboxDom = [
                   {
                     tag: "img",
                     attributes: {
-                      src: "./images/checkbox-icon.png",
+                      src: "../images/checkbox-icon.png",
                       alt: "radio",
                     },
                   },
@@ -307,7 +307,7 @@ export const checkboxDom = [
                   {
                     tag: "img",
                     attributes: {
-                      src: "./images/x-mark.png",
+                      src: "../images/x-mark.png",
                       alt: "x-mark.png",
                     },
                   },
@@ -326,7 +326,7 @@ export const checkboxDom = [
                   {
                     tag: "img",
                     attributes: {
-                      src: "./images/checkbox-icon.png",
+                      src: "../images/checkbox-icon.png",
                       alt: "checkbox",
                     },
                   },
@@ -550,7 +550,7 @@ export const mcqOptionDom = [
           {
             tag: "img",
             attributes: {
-              src: "./images/option-icon.png",
+              src: "../images/option-icon.png",
               alt: "radio",
             },
           },
@@ -573,7 +573,7 @@ export const mcqOptionDom = [
           {
             tag: "img",
             attributes: {
-              src: "./images/x-mark.png",
+              src: "../images/x-mark.png",
               alt: "x-mark.png",
             },
           },
@@ -599,7 +599,7 @@ export const checkboxOptionDom = [
           {
             tag: "img",
             attributes: {
-              src: "./images/checkbox-icon.png",
+              src: "../images/checkbox-icon.png",
               alt: "radio",
             },
           },
@@ -622,7 +622,7 @@ export const checkboxOptionDom = [
           {
             tag: "img",
             attributes: {
-              src: "./images/x-mark.png",
+              src: "../images/x-mark.png",
               alt: "x-mark.png",
             },
           },

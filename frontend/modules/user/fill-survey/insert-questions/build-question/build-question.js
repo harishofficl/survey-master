@@ -1,5 +1,8 @@
 export default function (question, type, questionNumber) {
-  const questionText = `${questionNumber}. ${question.question}${question.required ? "*" : ""}`;
+  console.log("question", question);
+  const questionText = `${questionNumber}. ${question.question}${
+    question.required ? "*" : ""
+  }`;
 
   if (type === "text") {
     return {
@@ -26,7 +29,8 @@ export default function (question, type, questionNumber) {
           children: [
             {
               tag: "input",
-              class: "user-question-input user-question-input-text poppins-normal",
+              class:
+                "user-question-input user-question-input-text poppins-normal",
               attributes: {
                 type: "text",
               },
@@ -60,7 +64,8 @@ export default function (question, type, questionNumber) {
           children: [
             {
               tag: "textarea",
-              class: "question-text user-question-input-textarea poppins-normal-copy",
+              class:
+                "question-text user-question-input-textarea poppins-normal-copy",
             },
           ],
         },
@@ -91,7 +96,8 @@ export default function (question, type, questionNumber) {
           children: [
             {
               tag: "input",
-              class: "user-question-input user-question-input-number poppins-normal",
+              class:
+                "user-question-input user-question-input-number poppins-normal",
               attributes: {
                 type: "number",
               },
@@ -101,7 +107,7 @@ export default function (question, type, questionNumber) {
       ],
     };
   } else if (type === "radio") {
-    const radioOptions = question.options.map((option) => {
+    const radioOptions = question.options.map((option, index) => {
       return {
         tag: "div",
         class: "user-answer-option-container",
@@ -110,14 +116,18 @@ export default function (question, type, questionNumber) {
             tag: "input",
             class: "user-question-radio-input",
             attributes: {
+              id: `q${questionNumber}-o${index + 1}`,
               type: "radio",
               value: option,
               name: question.question,
             },
           },
           {
-            tag: "p",
+            tag: "label",
             class: "user-question-option-text poppins-normal poppins-normal",
+            attributes: {
+              for: `q${questionNumber}-o${index + 1}`,
+            },
             text: option,
           },
         ],
@@ -150,7 +160,7 @@ export default function (question, type, questionNumber) {
       ],
     };
   } else if (type === "checkbox") {
-    const checkboxOptions = question.options.map((option) => {
+    const checkboxOptions = question.options.map((option, index) => {
       return {
         tag: "div",
         class: "user-answer-option-container",
@@ -159,12 +169,16 @@ export default function (question, type, questionNumber) {
             tag: "input",
             class: "user-question-checkbox-input",
             attributes: {
+              id: `q${questionNumber}-o${index + 1}`,
               type: "checkbox",
               value: option,
             },
           },
           {
-            tag: "p",
+            tag: "label",
+            attributes: {
+              for: `q${questionNumber}-o${index + 1}`,
+            },
             class: "user-question-option-text poppins-normal",
             text: option,
           },

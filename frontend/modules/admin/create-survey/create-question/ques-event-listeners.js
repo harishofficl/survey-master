@@ -8,6 +8,7 @@ import {
 } from "../../../../validations/validations.js";
 
 export default function (questionObject) {
+
   // dynamic size question textbox
   const questionInput = questionObject.querySelector(".question-text");
   questionInput.addEventListener("input", function () {
@@ -27,9 +28,9 @@ export default function (questionObject) {
 
   // change module based on response type
   const answerTypeObject = questionObject.querySelector(".answer-type");
-  answerTypeObject.addEventListener("change", () =>
-    loadAnswerTypeContent(questionObject, answerTypeObject)
-  );
+  answerTypeObject.addEventListener("change", () => {
+    loadAnswerTypeContent(questionObject, answerTypeObject);
+  });
 
   // add question
   const addQuestionIcon = questionObject.querySelector(".add-question-icon");
