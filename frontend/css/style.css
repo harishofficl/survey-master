@@ -944,7 +944,7 @@ input:checked + .slider:before {
 .user-question-input-text {
   border: none;
   border-radius: 0;
-  width: 80%;
+  width: 99%;
   border-bottom: 1px solid rgb(126, 126, 126);
   color: #212832;
   font-size: 15px;
@@ -956,13 +956,16 @@ input:checked + .slider:before {
 }
 
 .user-question-input-textarea {
-  width: 80%;
+  width: 99%;
   font-size: 15px;
   color: #212832;
+  border-bottom: 1px solid rgb(126, 126, 126);
 }
 
 .user-question-input-number {
   height: 20px;
+  width: 99%;
+  border-bottom: 1px solid rgb(126, 126, 126);
 }
 
 .user-question-input-file {
@@ -1028,7 +1031,7 @@ input:checked + .slider:before {
 
 .user-question-file-input {
   all: unset;
-  width: 50%;
+  width: 99%;
   padding: 5px;
   border-bottom: 1px solid #d4d7db;
   font-size: 14px;
