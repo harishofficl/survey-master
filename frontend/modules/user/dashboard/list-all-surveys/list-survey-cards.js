@@ -4,7 +4,7 @@ import surveyCardEventListener from "./event-listeners.js";
 
 async function fetchSurveys(page, size) {
   if (!page) page = 0;
-  if (!size) size = 9;
+  if (!size) size = 15;
   const api = `http://${url}/api/surveys?page=${page}&size=${size}`;
   try {
     const response = await fetch(api);

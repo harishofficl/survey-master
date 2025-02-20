@@ -127,17 +127,14 @@ export function eachQuesValidation(questionContainer, questionJson) {
 
     // only allow specific files
     fileInput.addEventListener("change", (event) => {
-      const fileTypes = [];
-      questionJson.fileTypes.forEach((fileType) => {
-        fileType.split(", ").forEach((type) => {
-          fileTypes.push(type);
-        });
-      });
+      const fileTypes = questionJson.fileTypes;
       const file = fileInput.files[0];
       if (file) {
         const fileName = file.name;
         const maxFileSize = questionJson.maxFileSize;
-        const fileType = fileName.slice(fileName.lastIndexOf("."));
+        const fileTypeArray = fileName.split(".");
+        const fileType = fileTypeArray[fileTypeArray.length - 1];
+        console.log(fileType);
         if (!fileTypes.includes(fileType)) {
           fileInput.value = "";
           appendErrorMessage(fileInput, `Invalid file type ${fileType}`);

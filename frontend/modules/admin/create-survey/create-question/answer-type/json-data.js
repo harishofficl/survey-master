@@ -381,7 +381,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".docx",
+                          value: "docx",
                         },
                       },
                       {
@@ -399,7 +399,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".xlsx",
+                          value: "xlsx",
                         },
                       },
                       {
@@ -417,7 +417,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".pdf",
+                          value: "pdf",
                         },
                       },
                       {
@@ -435,7 +435,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".mp4, .mkv, .avi",
+                          value: "mp4,mkv,avi",
                         },
                       },
                       {
@@ -453,7 +453,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".pptx",
+                          value: "pptx",
                         },
                       },
                       {
@@ -471,7 +471,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".jpg, .jpeg, .png",
+                          value: "jpg,jpeg,png",
                         },
                       },
                       {
@@ -489,7 +489,7 @@ export const fileDom = [
                         class: "file-type-value",
                         attributes: {
                           type: "checkbox",
-                          value: ".mp3, .wav",
+                          value: "mp3,wav",
                         },
                       },
                       {

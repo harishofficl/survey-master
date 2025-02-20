@@ -76,7 +76,9 @@ export default async function () {
       const fileTypes = [];
       const fileTypesInputs = question.querySelectorAll(".file-type-value");
       fileTypesInputs.forEach((fileType) => {
-        if (fileType.checked) fileTypes.push(fileType.value);
+        if (fileType.checked) {
+          fileTypes.push(...fileType.value.split(","));
+        }
       });
       questionArray.push({
         id: questionId,

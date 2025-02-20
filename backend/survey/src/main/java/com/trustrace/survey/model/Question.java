@@ -17,6 +17,7 @@ public class Question {
     private int minValue;
     private int maxValue;
     private int maxFileSize;
+    private boolean specifiedFileTypes;
     private List<String> options;
     private List<String> fileTypes;
     private boolean required;
