@@ -2,6 +2,11 @@ export default function (question, type, questionNumber) {
   const questionText = `${questionNumber}. ${question.question}${
     question.required ? "*" : ""
   }`;
+  let allowedFileTypes ='All file types ';
+  if(question.fileTypes !== null && question.fileTypes.length > 0){
+    allowedFileTypes = question.fileTypes.join(', ');
+  }
+  
 
   if (type === "text") {
     return {
@@ -230,7 +235,7 @@ export default function (question, type, questionNumber) {
             {
               tag: "p",
               class: "user-question user-question-file-allowed poppins-text",
-              text: `Only ${question.fileTypes.join(", ")} - allowed`,
+              text: `${allowedFileTypes} - allowed`,
             },
             {
               tag: "p",
