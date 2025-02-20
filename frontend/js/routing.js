@@ -148,7 +148,6 @@ function userDashboardLazy() {
         m.userDashboardInit();
       })
       .catch((err) => {
-        console.log(err);
         swal("Error", "User Dashboard not found!", "error");
       });
   }

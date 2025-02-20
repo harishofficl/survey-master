@@ -1,5 +1,4 @@
 export default function (question, type, questionNumber) {
-  console.log("question", question);
   const questionText = `${questionNumber}. ${question.question}${
     question.required ? "*" : ""
   }`;

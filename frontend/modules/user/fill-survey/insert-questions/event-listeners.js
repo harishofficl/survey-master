@@ -134,7 +134,6 @@ export function eachQuesValidation(questionContainer, questionJson) {
         const maxFileSize = questionJson.maxFileSize;
         const fileTypeArray = fileName.split(".");
         const fileType = fileTypeArray[fileTypeArray.length - 1];
-        console.log(fileType);
         if (!fileTypes.includes(fileType)) {
           fileInput.value = "";
           appendErrorMessage(fileInput, `Invalid file type ${fileType}`);
