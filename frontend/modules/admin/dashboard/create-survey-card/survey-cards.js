@@ -2,35 +2,6 @@ import htmlBuilder from "../../../../utils/htmlBuilder.js";
 import surveyCardEventListener from "./survey-card-event-listener.js";
 import { currentUserStore, url } from "../../../../data/store.js";
 
-// sample domStructure
-/*
-{
-    tag: "div",
-    class: "survey",
-    children: [
-      {
-        tag: "h3",
-        class: "survey-title",
-        text: "Survey 1",
-      },
-      {
-        tag: "p",
-        class: "survey-description",
-        text: "This is a survey description",
-      },
-      {
-        tag: "p",
-        class: "survey-responses",
-        text: "Total Responses: 100",
-      },
-      {
-        tag: "button",
-        class: "survey-button poppins-normal",
-        text: "View Survey",
-      },
-    ],
-  },
-*/
 // fetch surveys from db
 async function fetchSurveyCards(userId) {
   const api = `http://${url}/api/surveys/user?userId=${userId}`;

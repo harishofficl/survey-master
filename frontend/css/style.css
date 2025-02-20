@@ -358,6 +358,7 @@ li {
 .survey-title {
   font-size: 22px;
   color: #212832;
+  margin-bottom: 5px;
 }
 
 .survey-description {

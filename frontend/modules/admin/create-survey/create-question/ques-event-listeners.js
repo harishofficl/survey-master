@@ -45,7 +45,17 @@ export default function (questionObject) {
   );
   if (deleteQuestionIcon) {
     deleteQuestionIcon.addEventListener("click", () => {
-      questionObject.remove();
+      swal({
+        title: "Are you sure?",
+        text: "Do you want to delete this question?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          questionObject.remove();
+        }
+      });
     });
   }
 }
